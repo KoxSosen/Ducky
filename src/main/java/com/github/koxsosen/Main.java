@@ -8,7 +8,6 @@ import com.moandjiezana.toml.Toml;
 import java.io.InputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.javacord.api.entity.Updatable;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
