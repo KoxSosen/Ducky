@@ -14,13 +14,13 @@ import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
 public class Main {
 
-    private static final Logger logger = LogManager.getLogger(Main.class);
+    public static Logger logger = LogManager.getLogger(Main.class);
 
     private static final String CONFIG_TOML= "config.toml";
 
     public static void main(String[] args) {
 
-        Main main = new Main();
+        @SuppressWarnings("InstantiationOfUtilityClass") Main main = new Main();
         InputStream stream = main.getClass().getClassLoader().getResourceAsStream(CONFIG_TOML);
         Toml toml = new Toml().read(stream);
         // Set a fallback if Log4j isn't found.
@@ -29,10 +29,10 @@ public class Main {
         String token = String.valueOf(toml.getTable("bot").getString("token"));
         String prefix = String.valueOf(toml.getTable("bot").getString("prefix"));
         logger.info("Successfully read the bots token which is" + token);
-        logger.info("The bots's prefix is" + prefix);
+        logger.info("The bots prefix is" + prefix);
 
 
-        // Login using the disocrd api
+        // Login using the discord api
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(token)
                 .login().join();
