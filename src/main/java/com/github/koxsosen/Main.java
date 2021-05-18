@@ -8,6 +8,7 @@ import com.moandjiezana.toml.Toml;
 import java.io.InputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
@@ -25,8 +26,8 @@ public class Main {
         // Set a fallback if Log4j isn't found.
         FallbackLoggerConfiguration.setDebug(true);
 
-        String token = toml.getString("token");
-        String prefix = toml.getString("prefix");
+        String token = String.valueOf(toml.getTable("bot").getString("token"));
+        String prefix = String.valueOf(toml.getTable("bot").getString("prefix"));
         logger.info("Successfully read the bots token which is" + token);
         logger.info("The bots's prefix is" + prefix);
 

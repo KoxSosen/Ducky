@@ -1,3 +1,5 @@
-## Config for Ducky
-token=""
-prefix=""
+# This is the configuration file for Ducky
+# https://github.com/KoxSosen/Ducky
+    [bot]
+        token=""
+        prefix=""
