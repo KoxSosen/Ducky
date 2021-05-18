@@ -2,7 +2,7 @@
 .idea/
 
 # Add the config to prevent leaking the token while working
-.toml
+# .toml
 
 *.iml
 *.ipr

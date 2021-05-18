@@ -1,5 +1,6 @@
 package com.github.koxsosen;
 
+import com.github.koxsosen.commands.HelpCommand;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import com.moandjiezana.toml.Toml;
@@ -24,19 +25,21 @@ public class Main {
         FallbackLoggerConfiguration.setDebug(true);
 
         String token = toml.getString("token");
+        String prefix = toml.getString("prefix");
         logger.info("Successfully read the bots token which is" + token);
+        logger.info("The bots's prefix is" + prefix);
 
 
         // Login using the disocrd api
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(token)
                 .login().join();
-                logger.info("Logged in as " + api.getAccountType() + ", operating in " + api.getServers() + " servers.");
+                logger.info("Logged in as " + api.getClientId() + ", operating in " + api.getServers() + " servers.");
                 api.setReconnectDelay(attempt -> attempt * 2);
 
-        // Set the status of the bot
+        // Register commands
 
-
+        api.addMessageCreateListener(new HelpCommand());
 
 
         // Print the invite url of your bot
