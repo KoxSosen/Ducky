@@ -1,5 +1,7 @@
 # This is the configuration file for Ducky
 # https://github.com/KoxSosen/Ducky
-    [bot]
+    [essential]
         token=""
         prefix=""
+    [optional]
+        status="" # This will be an array list

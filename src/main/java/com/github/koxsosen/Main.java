@@ -26,8 +26,12 @@ public class Main {
         // Set a fallback if Log4j isn't found.
         FallbackLoggerConfiguration.setDebug(true);
 
-        String token = String.valueOf(toml.getTable("bot").getString("token"));
-        String prefix = String.valueOf(toml.getTable("bot").getString("prefix"));
+        // Get the strings from the table of toml
+        String token = String.valueOf(toml.getTable("essential").getString("token"));
+        String prefix = String.valueOf(toml.getTable("essential").getString("prefix"));
+
+        String status = String.valueOf(toml.getTable("optional").getString("status"));
+
         logger.info("Successfully read the bots token which is" + token);
         logger.info("The bots prefix is" + prefix);
 
@@ -41,7 +45,11 @@ public class Main {
 
         // Set the bots status
 
-        api.updateActivity(ActivityType.WATCHING, "yes");
+        api.updateActivity(ActivityType.WATCHING, status);
+        {
+            if(status == null);
+            logger.info("Status is null. Won't set a status");
+        }
 
         // Register commands
 
