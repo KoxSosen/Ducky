@@ -4,4 +4,5 @@
         token=""
         prefix=""
     [optional]
-        status="" # This will be an array list
+        statusmethod="" # Acceptable methods = PLAYING / STREAMING
+        status="" # Not today ty

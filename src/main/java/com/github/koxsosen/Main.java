@@ -31,15 +31,13 @@ public class Main {
         // Get the strings from the table of toml
         String token = String.valueOf(toml.getTable("essential").getString("token"));
         String prefix = String.valueOf(toml.getTable("essential").getString("prefix"));
-
-
-
+        String activitytype = String.valueOf(toml.getTable("optional").getString("statusmethod"));
         String status = String.valueOf(toml.getTable("optional").getString("status"));
 
-        logger.info("Successfully read the bots token which is" + token);
+       // logger.info("Successfully read the bots token which is" + token);
 
-        logger.info("The bots prefix is" + prefix);
-
+        logger.info("The bots prefix is " + prefix);
+        logger.info("The bots status is " + status + " and it's method is " + activitytype);
 
         // Login using the discord api
         DiscordApi api = new DiscordApiBuilder()
@@ -50,7 +48,7 @@ public class Main {
 
         // Set the bots status
 
-        api.updateActivity(ActivityType.WATCHING, status);
+        api.updateActivity(ActivityType.valueOf(activitytype), status);
 
         // Register commands
 
