@@ -6,7 +6,7 @@ import org.javacord.api.listener.message.MessageCreateListener;
 
 public class HelpCommand implements MessageCreateListener {
 
-
+    // This is just a debug class to see if the bot is live and stuff
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         if (event.getMessageContent().equalsIgnoreCase("!help")) {

@@ -4,5 +4,6 @@
         token=""
         prefix=""
     [optional]
-        statusmethod="" # Acceptable methods = PLAYING / STREAMING
+        statusmethod="" # Acceptable methods = PLAYING / WATCHING
         status="" # Not today ty
+# End

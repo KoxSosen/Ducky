@@ -18,6 +18,7 @@ public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
 
+    // Define the config file
     private static final String CONFIG_TOML= "config.toml";
 
     public static void main(String[] args) {
@@ -47,14 +48,11 @@ public class Main {
                 api.setReconnectDelay(attempt -> attempt * 2);
 
         // Set the bots status
-
         api.updateActivity(ActivityType.valueOf(activitytype), status);
 
         // Register commands
-
         api.addMessageCreateListener(new HelpCommand());
         api.addMessageCreateListener(new WebSearch());
-
 
         // Print the invite url of your bot
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());

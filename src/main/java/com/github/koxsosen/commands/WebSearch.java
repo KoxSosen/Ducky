@@ -11,6 +11,9 @@ public class WebSearch implements MessageCreateListener {
 
     private static final Logger logger = LogManager.getLogger(WebSearch.class);
 
+
+    // This class gets the args from the !g command. This will be used to run the search query.
+
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!g")) {
