@@ -8,7 +8,7 @@ public class WebSearch implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!g")) {
-            //TODO
+            // TODO
         }
     }
 }

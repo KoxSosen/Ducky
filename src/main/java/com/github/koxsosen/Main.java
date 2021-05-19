@@ -34,7 +34,6 @@ public class Main {
 
 
 
-
         String status = String.valueOf(toml.getTable("optional").getString("status"));
 
         logger.info("Successfully read the bots token which is" + token);
