@@ -1,6 +1,7 @@
 package com.github.koxsosen;
 
 import com.github.koxsosen.commands.HelpCommand;
+import com.github.koxsosen.commands.WebSearch;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import com.moandjiezana.toml.Toml;
@@ -12,9 +13,10 @@ import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
+
 public class Main {
 
-    public static Logger logger = LogManager.getLogger(Main.class);
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     private static final String CONFIG_TOML= "config.toml";
 
@@ -32,6 +34,7 @@ public class Main {
 
 
 
+
         String status = String.valueOf(toml.getTable("optional").getString("status"));
 
         logger.info("Successfully read the bots token which is" + token);
@@ -43,7 +46,7 @@ public class Main {
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(token)
                 .login().join();
-                logger.info("Logged in as " + api.getClientId() + ", operating in " + api.getServers() + " servers.");
+                logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
                 api.setReconnectDelay(attempt -> attempt * 2);
 
         // Set the bots status
@@ -53,10 +56,12 @@ public class Main {
         // Register commands
 
         api.addMessageCreateListener(new HelpCommand());
+        api.addMessageCreateListener(new WebSearch());
 
 
         // Print the invite url of your bot
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
     }
+
 
 }
