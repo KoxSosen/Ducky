@@ -13,7 +13,8 @@ public class InviteCommand implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         if (event.getMessageContent().contains(Main.PREFIX + "inv")) {
-            event.getChannel().sendMessage("You can invite the bot by clicking the following url:" + event.getChannel().getCreationTimestamp());
+            event.getChannel().sendMessage(event.getMessage().getAuthor() +
+                    "You can invite the bot by using the following url:" + event.getApi().createBotInvite());
             logger.info(event.getMessage().getAuthor() + " requested this command." );
         }
     }
