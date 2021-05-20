@@ -1,6 +1,7 @@
 package com.github.koxsosen;
 
 import com.github.koxsosen.commands.HelpCommand;
+import com.github.koxsosen.commands.InviteCommand;
 import com.github.koxsosen.commands.WebSearch;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
@@ -53,14 +54,11 @@ public class Main {
         // Register commands
         api.addMessageCreateListener(new HelpCommand());
         api.addMessageCreateListener(new WebSearch());
+        api.addMessageCreateListener(new InviteCommand());
 
         // Print the invite url of your bot
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
 
-
         }
-        public static String PREFIX; {
-        String prefix;
-    }
 
 }

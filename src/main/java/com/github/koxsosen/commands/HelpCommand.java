@@ -1,6 +1,6 @@
 package com.github.koxsosen.commands;
 
-import com.github.koxsosen.Main;
+import com.github.koxsosen.info.Prefix;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -13,7 +13,7 @@ public class HelpCommand implements MessageCreateListener {
     // This is just a debug class to see if the bot is live and stuff
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().equalsIgnoreCase(Main.PREFIX + "halp")) {
+        if (event.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "help")) {
             event.getChannel().sendMessage("This is a test debug message which was sent at " + event.getChannel().getCreationTimestamp());
             logger.info(event.getMessage().getAuthor() + " requested this command." );
         }

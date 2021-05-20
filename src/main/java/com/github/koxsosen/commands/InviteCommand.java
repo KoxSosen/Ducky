@@ -1,6 +1,6 @@
 package com.github.koxsosen.commands;
 
-import com.github.koxsosen.Main;
+import com.github.koxsosen.info.Prefix;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -12,9 +12,8 @@ public class InviteCommand implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().contains(Main.PREFIX + "inv")) {
-            event.getChannel().sendMessage(event.getMessage().getAuthor() +
-                    "You can invite the bot by using the following url:" + event.getApi().createBotInvite());
+        if (event.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "inv")) {
+            event.getChannel().sendMessage("You can invite the bot by using the following url: " + event.getApi().createBotInvite());
             logger.info(event.getMessage().getAuthor() + " requested this command." );
         }
     }
