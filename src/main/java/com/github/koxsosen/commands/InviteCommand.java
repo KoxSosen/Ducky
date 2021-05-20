@@ -6,17 +6,16 @@ import org.apache.logging.log4j.Logger;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
-public class HelpCommand implements MessageCreateListener {
+public class InviteCommand implements MessageCreateListener {
 
-    private static final Logger logger = LogManager.getLogger(HelpCommand.class);
+    private static final Logger logger = LogManager.getLogger(InviteCommand.class);
 
-    // This is just a debug class to see if the bot is live and stuff
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().equalsIgnoreCase(Main.PREFIX + "halp")) {
-            event.getChannel().sendMessage("This is a test debug message which was sent at " + event.getChannel().getCreationTimestamp());
+        if (event.getMessageContent().contains(Main.PREFIX + "inv")) {
+            event.getChannel().sendMessage("You can invite the bot by clicking the following url:" + event.getChannel().getCreationTimestamp());
             logger.info(event.getMessage().getAuthor() + " requested this command." );
         }
     }
-}
 
+}

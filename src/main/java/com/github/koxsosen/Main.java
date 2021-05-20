@@ -56,9 +56,11 @@ public class Main {
 
         // Print the invite url of your bot
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
+
+
+        }
+        public static String PREFIX; {
+        String prefix;
     }
-
-
-
 
 }
