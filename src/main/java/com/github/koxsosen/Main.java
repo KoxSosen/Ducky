@@ -1,6 +1,10 @@
 package com.github.koxsosen;
 
-import com.github.koxsosen.commands.*;
+import com.github.koxsosen.commands.HelpCommand;
+import com.github.koxsosen.commands.InviteCommand;
+import com.github.koxsosen.commands.PasteCommand;
+import com.github.koxsosen.commands.WebSearch;
+import com.github.koxsosen.commands.WebsiteCommand;
 import com.github.koxsosen.info.Prefix;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
