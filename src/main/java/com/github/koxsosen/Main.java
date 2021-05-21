@@ -31,6 +31,7 @@ public class Main {
         // Login using the discord api
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(Prefix.TOKEN())
+                .setAllIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES) // Disable unneeded Intents.
                 .login().join();
                 logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
                 // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
