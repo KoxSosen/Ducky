@@ -5,11 +5,15 @@ import com.moandjiezana.toml.Toml;
 
 import java.io.InputStream;
 
+// Attention! This object management is very bad. This will require a refactor which will be done in the future.
+
+
 public class Prefix {
 
     private static final String CONFIG_TOML= "config.toml";
 
     static Main main = new Main();
+
     static InputStream stream = main.getClass().getClassLoader().getResourceAsStream(CONFIG_TOML);
     static Toml toml = new Toml().read(stream);
 
@@ -21,8 +25,8 @@ public class Prefix {
         return String.valueOf(toml.getTable("essential").getString("token"));
     }
 
-    public static String STATUSMETHOD() {
-        return String.valueOf(toml.getTable("optional").getString("statusmethod"));
+    public static String STATUSTYPE() {
+        return String.valueOf(toml.getTable("optional").getString("statustype"));
     }
 
     public static String STATUS() {
