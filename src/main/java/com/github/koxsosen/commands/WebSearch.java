@@ -16,11 +16,12 @@ public class WebSearch implements MessageCreateListener {
     // This class gets the args from the !g command. This will be used to run the search query.
 
     @Override
-    public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
-        if (messageCreateEvent.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "g")) {
-            messageCreateEvent.getMessageContent().toLowerCase(Locale.ROOT).trim().split(" +");
-            messageCreateEvent.getChannel().sendMessage(":warning: **Ducky is a under a recode.** :warning: \n Until this command is stable it is disabled for public use.");
-          logger.info("Successfully got arg(s): " + messageCreateEvent.getMessageContent());
+    public void onMessageCreate(MessageCreateEvent event) {
+        if (event.getMessageAuthor().isBotUser()) return;
+        if (event.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "g")) {
+            event.getMessageContent().toLowerCase(Locale.ROOT).trim().split(" +");
+            event.getChannel().sendMessage(":warning: **Ducky is a under a recode.** :warning: \n Until this command is stable it is disabled for public use.");
+          logger.info("Successfully got arg(s): " + event.getMessageContent());
         }
     }
 }

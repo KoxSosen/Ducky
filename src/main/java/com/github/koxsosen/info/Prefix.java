@@ -6,11 +6,15 @@ import com.moandjiezana.toml.Toml;
 import java.io.InputStream;
 
 // Attention! This object management is very bad. This will require a refactor which will be done in the future.
-
+//TODO
+// Add logger here and warn the user here if the token == null
 
 public class Prefix {
 
-    private static final String CONFIG_TOML= "config.toml";
+
+   private static final String CONFIG_TOML= "config.toml";
+   // private static final String CONFIG_TOML= "config1.toml";
+
 
     static Main main = new Main();
 
@@ -22,6 +26,7 @@ public class Prefix {
     }
     public static String TOKEN() {
         return String.valueOf(toml.getTable("botmain").getString("token"));
+
     }
     public static String STATUSTYPE() {
         return String.valueOf(toml.getTable("optional").getString("statustype"));

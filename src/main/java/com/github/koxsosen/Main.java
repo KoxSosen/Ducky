@@ -1,9 +1,6 @@
 package com.github.koxsosen;
 
-import com.github.koxsosen.commands.HelpCommand;
-import com.github.koxsosen.commands.InviteCommand;
-import com.github.koxsosen.commands.PasteCommand;
-import com.github.koxsosen.commands.WebSearch;
+import com.github.koxsosen.commands.*;
 import com.github.koxsosen.info.Prefix;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
@@ -47,6 +44,7 @@ public class Main {
         api.addMessageCreateListener(new WebSearch());
         api.addMessageCreateListener(new InviteCommand());
         api.addMessageCreateListener(new PasteCommand());
+        api.addMessageCreateListener(new WebsiteCommand());
 
         // Print the invite url of your bot
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
