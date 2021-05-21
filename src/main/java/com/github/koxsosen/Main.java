@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.javacord.api.entity.activity.ActivityType;
+import org.javacord.api.entity.intent.Intent;
 import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
 
@@ -24,17 +25,21 @@ public class Main {
         FallbackLoggerConfiguration.setDebug(true);
 
         logger.info("The bots prefix is " + Prefix.PREFIX());
-        logger.info("The bots status is " + Prefix.STATUS() + " and it's method is " + Prefix.STATUSMETHOD());
+        logger.info("The bots status is " + Prefix.STATUS() + " and it's method is " + Prefix.STATUSTYPE());
 
         // Login using the discord api
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(Prefix.TOKEN())
+                .setAllIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES) // Disable unneeded Intents.
                 .login().join();
                 logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
+                // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
                 api.setReconnectDelay(attempt -> attempt * 2);
+                // Only cache 10 messages per channel & remove ones older than 1 hour.
+                api.setMessageCacheSize(10, 60*60);
 
         // Set the bots status
-        api.updateActivity(ActivityType.valueOf(Prefix.STATUSMETHOD()), Prefix.STATUS());
+        api.updateActivity(ActivityType.valueOf(Prefix.STATUSTYPE()), Prefix.STATUS());
 
         // Register commands
         api.addMessageCreateListener(new HelpCommand());
