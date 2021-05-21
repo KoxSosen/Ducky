@@ -1,5 +1,6 @@
 package com.github.koxsosen.commands;
 
+import com.github.koxsosen.info.Prefix;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -16,9 +17,10 @@ public class WebSearch implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
-        if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!g")) {
+        if (messageCreateEvent.getMessageContent().equalsIgnoreCase(Prefix.PREFIX() + "g")) {
             messageCreateEvent.getMessageContent().toLowerCase(Locale.ROOT).trim().split(" +");
-          //  logger.info("Successfully got arg(s): " + messageCreateEvent); Nope
+            messageCreateEvent.getChannel().sendMessage(":warning: **Ducky is a under a recode.** :warning: /n Until this command is stable it is disabled for public use.");
+          logger.info("Successfully got arg(s): " + messageCreateEvent);
         }
     }
 }
