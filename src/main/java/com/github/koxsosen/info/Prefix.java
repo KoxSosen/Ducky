@@ -18,11 +18,11 @@ public class Prefix {
     static Toml toml = new Toml().read(stream);
 
     public static String PREFIX() {
-        return String.valueOf(toml.getTable("essential").getString("prefix"));
+        return String.valueOf(toml.getTable("botmain").getString("prefix"));
     }
 
     public static String TOKEN() {
-        return String.valueOf(toml.getTable("essential").getString("token"));
+        return String.valueOf(toml.getTable("botmain").getString("token"));
     }
 
     public static String STATUSTYPE() {
@@ -31,6 +31,10 @@ public class Prefix {
 
     public static String STATUS() {
         return String.valueOf(toml.getTable("optional").getString("status"));
+    }
+
+    public static String PASTEURL() {
+        return String.valueOf(toml.getTable("paste").getString("pasteurl"));
     }
 
 }

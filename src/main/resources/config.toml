@@ -1,9 +1,11 @@
 # This is the configuration file for Ducky
 # https://github.com/KoxSosen/Ducky
-    [essential]
+    [botmain]
         token=""
         prefix=""
     [optional]
         statusmethod="" # Acceptable methods = PLAYING / WATCHING
-        status="" # Not today ty
+        status=""
+    [paste]
+        pasteurl=""
 # End
