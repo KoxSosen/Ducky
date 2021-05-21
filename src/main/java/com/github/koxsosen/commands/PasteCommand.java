@@ -15,7 +15,7 @@ public class PasteCommand implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         if (messageCreateEvent.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "paste")) {
-            messageCreateEvent.getChannel().sendMessage("Hello! :wave: /n Please use a paste service! /n" + Prefix.PASTEURL());
+            messageCreateEvent.getChannel().sendMessage("Hello! :wave: \nPlease use a paste service: " + Prefix.PASTEURL());
             logger.info("Successfully got arg(s): " + messageCreateEvent);
         }
     }

@@ -20,19 +20,15 @@ public class Prefix {
     public static String PREFIX() {
         return String.valueOf(toml.getTable("botmain").getString("prefix"));
     }
-
     public static String TOKEN() {
         return String.valueOf(toml.getTable("botmain").getString("token"));
     }
-
     public static String STATUSTYPE() {
         return String.valueOf(toml.getTable("optional").getString("statustype"));
     }
-
     public static String STATUS() {
         return String.valueOf(toml.getTable("optional").getString("status"));
     }
-
     public static String PASTEURL() {
         return String.valueOf(toml.getTable("paste").getString("pasteurl"));
     }

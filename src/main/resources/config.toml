@@ -4,7 +4,7 @@
         token=""
         prefix=""
     [optional]
-        statusmethod="" # Acceptable methods = PLAYING / WATCHING
+        statustype="" # Acceptable methods = PLAYING / WATCHING
         status=""
     [paste]
         pasteurl=""

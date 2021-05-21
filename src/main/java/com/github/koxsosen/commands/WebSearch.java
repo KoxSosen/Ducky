@@ -19,8 +19,8 @@ public class WebSearch implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         if (messageCreateEvent.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "g")) {
             messageCreateEvent.getMessageContent().toLowerCase(Locale.ROOT).trim().split(" +");
-            messageCreateEvent.getChannel().sendMessage(":warning: **Ducky is a under a recode.** :warning: /n Until this command is stable it is disabled for public use.");
-          logger.info("Successfully got arg(s): " + messageCreateEvent);
+            messageCreateEvent.getChannel().sendMessage(":warning: **Ducky is a under a recode.** :warning: \n Until this command is stable it is disabled for public use.");
+          logger.info("Successfully got arg(s): " + messageCreateEvent.getMessageContent());
         }
     }
 }

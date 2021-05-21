@@ -2,6 +2,7 @@ package com.github.koxsosen;
 
 import com.github.koxsosen.commands.HelpCommand;
 import com.github.koxsosen.commands.InviteCommand;
+import com.github.koxsosen.commands.PasteCommand;
 import com.github.koxsosen.commands.WebSearch;
 import com.github.koxsosen.info.Prefix;
 import org.javacord.api.DiscordApi;
@@ -22,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Set a fallback if Log4j isn't found.
-        FallbackLoggerConfiguration.setDebug(true);
+        FallbackLoggerConfiguration.setDebug(false);
 
         logger.info("The bots prefix is " + Prefix.PREFIX());
         logger.info("The bots status is " + Prefix.STATUS() + " and it's method is " + Prefix.STATUSTYPE());
@@ -30,7 +31,6 @@ public class Main {
         // Login using the discord api
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(Prefix.TOKEN())
-                .setAllIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES) // Disable unneeded Intents.
                 .login().join();
                 logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
                 // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
@@ -45,6 +45,7 @@ public class Main {
         api.addMessageCreateListener(new HelpCommand());
         api.addMessageCreateListener(new WebSearch());
         api.addMessageCreateListener(new InviteCommand());
+        api.addMessageCreateListener(new PasteCommand());
 
         // Print the invite url of your bot
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
