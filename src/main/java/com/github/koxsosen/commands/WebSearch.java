@@ -1,5 +1,6 @@
 package com.github.koxsosen.commands;
 
+import com.github.koxsosen.Constants;
 import com.github.koxsosen.info.Prefix;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +19,7 @@ public class WebSearch implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         if (event.getMessageAuthor().isBotUser()) return;
-        if (event.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "g")) {
+        if (event.getMessageContent().toLowerCase().contains(Constants.PREFIX() + "g")) {
             event.getMessageContent().toLowerCase(Locale.ROOT).trim().split(" +");
             event.getChannel().sendMessage(":warning: **Ducky is a under a recode.** :warning: \n Until this command is stable it is disabled for public use.");
           logger.info("Successfully got arg(s): " + event.getMessageContent());

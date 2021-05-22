@@ -26,12 +26,12 @@ public class Main {
         // Set a fallback if Log4j isn't found.
         FallbackLoggerConfiguration.setDebug(false);
 
-        logger.info("The bots prefix is " + Prefix.PREFIX());
-        logger.info("The bots status is " + Prefix.STATUS() + " and it's method is " + Prefix.STATUSTYPE());
+        logger.info("The bots prefix is " + Constants.PREFIX());
+        logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
 
         // Login using the discord api
         DiscordApi api = new DiscordApiBuilder()
-                .setToken(Prefix.TOKEN())
+                .setToken(Constants.TOKEN)
                 .setAllIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES) // Disable unneeded Intents.
                 .login().join();
                 logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
@@ -41,7 +41,7 @@ public class Main {
                 api.setMessageCacheSize(10, 60*60);
 
         // Set the bots status
-        api.updateActivity(ActivityType.valueOf(Prefix.STATUSTYPE()), Prefix.STATUS());
+        api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
 
         // Register commands
         api.addMessageCreateListener(new HelpCommand());
