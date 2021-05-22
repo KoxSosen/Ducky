@@ -1,7 +1,9 @@
 <div align="center">
+<img src=https://cdn.discordapp.com/avatars/805150455378345994/bf0f920b56e75cbe1f567c8652f3710e.png?size=256alt="DuckyPic">
+<p>
+<p>
 <img src=https://github.com/TTRCharlie/Ducky/actions/workflows/maven.yml/badge.svg "DuckyPic">
 <p>
-<img src=https://cdn.discordapp.com/avatars/805150455378345994/bf0f920b56e75cbe1f567c8652f3710e.png?size=256alt="DuckyPic">
 # Ducky
 </div>
 
