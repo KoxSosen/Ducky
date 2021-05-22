@@ -3,15 +3,15 @@ package com.github.koxsosen;
 public final class Constants {
 
 
-    public static final String PREFIX = "d.";
+    public static final String PREFIX = "q.";
 
-    public static final String TOKEN = "212123232232L";
+    public static final String TOKEN = "ODQ1NjcyMjUxMjE0OTIxNzYw.YKkXqA.e9hOUS0IXfswIRjbErrAmkpK2So";
 
     public static final String STATUS = "Hello this is my status!";
 
     public static final String STATUSTYPE = "PLAYING";
 
-    public static final String PASTEURL = "https://paste.hahota.net";
+    public static final String PASTEURL = "https://paste.ttr3.eu";
 
     private Constants() { }
 
