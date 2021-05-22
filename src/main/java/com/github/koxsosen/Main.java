@@ -46,7 +46,10 @@ public class Main {
 
         CommandHandler handler = new JavacordHandler(api);
         handler.registerCommand(new WebsiteCommand());
-
+        handler.registerCommand(new InviteCommand());
+        handler.registerCommand(new PasteCommand());
+        handler.registerCommand(new HelpCommand());
+        handler.registerCommand(new WebSearch());
 
         api.addMessageCreateListener(new DuckyMSG(handler));
 
