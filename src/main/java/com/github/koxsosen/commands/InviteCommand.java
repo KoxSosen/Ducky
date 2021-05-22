@@ -1,23 +1,25 @@
 package com.github.koxsosen.commands;
 
 import com.github.koxsosen.Constants;
-import com.github.koxsosen.info.Prefix;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.entity.channel.TextChannel;
+import org.javacord.api.entity.message.Message;
 
-public class InviteCommand implements MessageCreateListener {
+import java.io.IOException;
+
+public class InviteCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(InviteCommand.class);
 
-    @Override
-    public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().toLowerCase().contains(Constants.PREFIX() + "inv")) {
-            if (event.getMessageAuthor().isBotUser()) return;
-            event.getChannel().sendMessage("You can invite the bot by using the following url: " + event.getApi().createBotInvite());
-            logger.info(event.getMessage().getAuthor() + " requested this command." );
+    @Command(aliases = {Constants.PREFIX +"inv"}, async = true, description = "Create an invite for the bot")
+    public void onComand(TextChannel channel, Message message) throws IOException {
+        if (message.getAuthor().isBotUser()) {
+            return;
         }
-    }
 
+        channel.sendMessage("You can invite the bot using the following url: \n" + message.getApi().createBotInvite());
+    }
 }

@@ -1,25 +1,25 @@
 package com.github.koxsosen.commands;
 
 import com.github.koxsosen.Constants;
-import com.github.koxsosen.info.Prefix;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.entity.channel.TextChannel;
+import org.javacord.api.entity.message.Message;
 
-public class WebsiteCommand implements MessageCreateListener {
+import java.io.IOException;
 
+public class WebsiteCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(WebsiteCommand.class);
 
-    @Override
-    public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().toLowerCase().contains(Constants.PREFIX() + "site")) {
-            if (event.getMessageAuthor().isBotUser()) return;
-            event.getChannel().sendMessage("Ducky has it's own website! \nhttps://ducky.hahota.net");
-            logger.info(event.getMessage().getAuthor() + " requested this command." );
+    @Command(aliases = {Constants.PREFIX +"site"}, async = true, description = "Shows ducky's site")
+    public void onComand(TextChannel channel, Message message) throws IOException {
+        if (message.getAuthor().isBotUser()) {
+            return;
         }
+
+        channel.sendMessage("Ducky has it's own website! \n https://ducky.hahota.net");
     }
-
-
 }

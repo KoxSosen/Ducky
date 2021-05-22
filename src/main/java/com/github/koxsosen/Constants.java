@@ -2,7 +2,6 @@ package com.github.koxsosen;
 
 public final class Constants {
 
-
     public static final String PREFIX = "d.";
 
     public static final String TOKEN = "212123232232L";

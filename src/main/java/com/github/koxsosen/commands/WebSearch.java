@@ -20,7 +20,7 @@ public class WebSearch implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         if (event.getMessageAuthor().isBotUser()) return;
         if (event.getMessageContent().toLowerCase().contains(Constants.PREFIX() + "g")) {
-            event.getMessageContent().toLowerCase(Locale.ROOT).trim().split(" +");
+            event.getMessageContent().toLowerCase(Locale.ROOT).trim().split(" +"); // This creates a string array & we have to create a String array
             event.getChannel().sendMessage(":warning: **Ducky is a under a recode.** :warning: \n Until this command is stable it is disabled for public use.");
           logger.info("Successfully got arg(s): " + event.getMessageContent());
         }
