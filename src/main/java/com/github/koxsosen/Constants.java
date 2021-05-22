@@ -4,7 +4,7 @@ public final class Constants {
 
     public static final String PREFIX = "d.";
 
-    public static final String TOKEN = "8381381";
+    public static final String TOKEN = "awa";
 
     public static final String STATUS = "Hello this is my status!";
 
