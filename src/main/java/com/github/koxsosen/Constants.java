@@ -5,7 +5,7 @@ public final class Constants {
 
     public static final String PREFIX = "q.";
 
-    public static final String TOKEN = "ODQ1NjcyMjUxMjE0OTIxNzYw.YKkXqA.e9hOUS0IXfswIRjbErrAmkpK2So";
+    public static final String TOKEN = "TOKEN";
 
     public static final String STATUS = "Hello this is my status!";
 
