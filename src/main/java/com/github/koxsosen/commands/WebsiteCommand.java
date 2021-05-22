@@ -1,5 +1,6 @@
 package com.github.koxsosen.commands;
 
+import com.github.koxsosen.Constants;
 import com.github.koxsosen.info.Prefix;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +14,7 @@ public class WebsiteCommand implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "site")) {
+        if (event.getMessageContent().toLowerCase().contains(Constants.PREFIX() + "site")) {
             if (event.getMessageAuthor().isBotUser()) return;
             event.getChannel().sendMessage("Ducky has it's own website! \nhttps://ducky.hahota.net");
             logger.info(event.getMessage().getAuthor() + " requested this command." );

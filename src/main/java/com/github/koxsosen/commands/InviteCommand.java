@@ -1,5 +1,6 @@
 package com.github.koxsosen.commands;
 
+import com.github.koxsosen.Constants;
 import com.github.koxsosen.info.Prefix;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +13,7 @@ public class InviteCommand implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "inv")) {
+        if (event.getMessageContent().toLowerCase().contains(Constants.PREFIX() + "inv")) {
             if (event.getMessageAuthor().isBotUser()) return;
             event.getChannel().sendMessage("You can invite the bot by using the following url: " + event.getApi().createBotInvite());
             logger.info(event.getMessage().getAuthor() + " requested this command." );

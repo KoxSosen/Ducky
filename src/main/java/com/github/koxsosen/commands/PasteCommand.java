@@ -1,6 +1,6 @@
 package com.github.koxsosen.commands;
 
-import com.github.koxsosen.info.Prefix;
+import com.github.koxsosen.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -14,8 +14,8 @@ public class PasteCommand implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         if (event.getMessageAuthor().isBotUser()) return;
-        if (event.getMessageContent().toLowerCase().contains(Prefix.PREFIX() + "paste")) {
-            event.getChannel().sendMessage("Hello! :wave: \nPlease use a paste service: " + Prefix.PASTEURL());
+        if (event.getMessageContent().toLowerCase().contains(Constants.PREFIX() + "paste")) {
+            event.getChannel().sendMessage("Hello! :wave: \nPlease use a paste service: " + Constants.PASTEURL());
 
         }
     }
