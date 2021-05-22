@@ -1,11 +1,9 @@
 package com.github.koxsosen;
 
-import com.github.koxsosen.commands.HelpCommand;
-import com.github.koxsosen.commands.InviteCommand;
-import com.github.koxsosen.commands.PasteCommand;
-import com.github.koxsosen.commands.WebSearch;
-import com.github.koxsosen.commands.WebsiteCommand;
-import com.github.koxsosen.info.Prefix;
+import com.github.koxsosen.commands.*;
+import com.github.koxsosen.listeners.DuckyMSG;
+import de.btobastian.sdcf4j.CommandHandler;
+import de.btobastian.sdcf4j.handler.JavacordHandler;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 
@@ -33,6 +31,7 @@ public class Main {
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(Constants.TOKEN)
                 .setAllIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES) // Disable unneeded Intents.
+                .setWaitForServersOnStartup(false)
                 .login().join();
                 logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
                 // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
@@ -44,11 +43,12 @@ public class Main {
         api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
 
         // Register commands
-        api.addMessageCreateListener(new HelpCommand());
-        api.addMessageCreateListener(new WebSearch());
-        api.addMessageCreateListener(new InviteCommand());
-        api.addMessageCreateListener(new PasteCommand());
-        api.addMessageCreateListener(new WebsiteCommand());
+
+        CommandHandler handler = new JavacordHandler(api);
+        handler.registerCommand(new WebsiteCommand());
+
+
+        api.addMessageCreateListener(new DuckyMSG(handler));
 
         // Print the invite url of your bot
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
