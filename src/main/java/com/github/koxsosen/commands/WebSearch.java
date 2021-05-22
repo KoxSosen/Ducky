@@ -13,17 +13,22 @@ import java.util.Locale;
 public class WebSearch implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(WebSearch.class);
-   // String[] SEARCQUERYVAR = new String[] {"Door"}; // Soontm ( Hold the obj of the result in a variable )
+    // String[] SEARCHQUERYVAR = new String[] {"SEARCQUERYVAR"}; // Soontm ( Hold the obj of the result in a variable )
 
     @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on the clearnet")
     public void onCommand(TextChannel channel, Message message) {
         if (message.getAuthor().isBotUser()) {
             return;
         }
-        message.getContent().toLowerCase(Locale.ROOT).trim().split(" +"); // This returns a String[] ( String array )
+        message.getContent();
         channel.sendMessage(":warning: **Ducky is a under a recode.** :warning: \n Until this command is stable it is disabled for public use." +
                 "\n But here is a google search query with your questions:" +
-                "\n https://www.google.com/search?q=");
+                "\n https://www.google.com/search?q=" + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20"));
+
+       //TODO
+        // https://docs.oracle.com/javase/8/docs/api/java/net/URLEncoder.html
+        // instead of replace maybe?
+
         logger.info(message.getAuthor() + " requested this command.");
     }
 }

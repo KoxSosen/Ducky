@@ -2,13 +2,13 @@ package com.github.koxsosen;
 
 public final class Constants {
 
-    public static final String PREFIX = "d.";
+    public static final String PREFIX = ".";
 
-    public static final String TOKEN = "awa";
+    public static final String TOKEN = "token";
 
-    public static final String STATUS = "Hello this is my status!";
+    public static final String STATUS = ".g | .help";
 
-    public static final String STATUSTYPE = "PLAYING";
+    public static final String STATUSTYPE = "WATCHING";
 
     public static final String PASTEURL = "https://paste.hahota.net";
 
