@@ -23,6 +23,6 @@ public class DuckyMSG implements MessageCreateListener {
         }
         boolean messageIsCommand = commandHandler.getCommands().stream()
                 .flatMap(command -> Arrays.stream(command.getCommandAnnotation().aliases()))
-                .anyMatch(alias -> event.getMessageContent().contains(alias));
+                .anyMatch(alias -> event.getMessageContent().startsWith(alias));
     }
 }
