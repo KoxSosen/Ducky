@@ -1,28 +1,26 @@
 package com.github.koxsosen.commands;
 
 import com.github.koxsosen.Constants;
-import com.github.koxsosen.info.Prefix;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.entity.channel.TextChannel;
+import org.javacord.api.entity.message.Message;
 
 import java.util.Locale;
 
-public class WebSearch implements MessageCreateListener {
+public class WebSearch implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(WebSearch.class);
 
-
-    // This class gets the args from the !g command. This will be used to run the search query.
-
-    @Override
-    public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageAuthor().isBotUser()) return;
-        if (event.getMessageContent().toLowerCase().contains(Constants.PREFIX() + "g")) {
-            event.getMessageContent().toLowerCase(Locale.ROOT).trim().split(" +"); // This creates a string array & we have to create a String array
-            event.getChannel().sendMessage(":warning: **Ducky is a under a recode.** :warning: \n Until this command is stable it is disabled for public use.");
-          logger.info("Successfully got arg(s): " + event.getMessageContent());
+    @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on the clearnet")
+    public void onCommand(TextChannel channel, Message message) {
+        if (message.getAuthor().isBotUser()) {
+            return;
         }
+        message.getContent().toLowerCase(Locale.ROOT).trim().split(" +"); // This returns a String[] ( array )
+        channel.sendMessage(":warning: **Ducky is a under a recode.** :warning: \n Until this command is stable it is disabled for public use.");
+        logger.info(message.getAuthor() + " requested this command.");
     }
 }

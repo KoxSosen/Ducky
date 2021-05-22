@@ -1,6 +1,7 @@
 package com.github.koxsosen.listeners;
 
 
+import com.github.koxsosen.Constants;
 import de.btobastian.sdcf4j.CommandHandler;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
@@ -23,8 +24,5 @@ public class DuckyMSG implements MessageCreateListener {
         boolean messageIsCommand = commandHandler.getCommands().stream()
                 .flatMap(command -> Arrays.stream(command.getCommandAnnotation().aliases()))
                 .anyMatch(alias -> event.getMessageContent().contains(alias));
-
     }
-
-
 }
