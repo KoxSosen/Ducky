@@ -4,7 +4,7 @@
 # Ducky
 </div>
 
-Ducky is a discord bot written in [Javacord](https://github.com/Javacord/Javacord).
+Ducky is a discord bot written in [Javacord](https://github.com/Javacord/Javacord), using the [sdcf4j](https://github.com/Bastian/sdcf4j) framework.
 
 At the moment **the bot is under development**, as this is a recode in Java from NodeJs.
 
