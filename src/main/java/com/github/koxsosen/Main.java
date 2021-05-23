@@ -40,11 +40,11 @@ public class Main {
                 // Only cache 10 messages per channel & remove ones older than 1 hour.
                 api.setMessageCacheSize(10, 60*60);
 
+
         // Set the bots status
         api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
 
         // Register commands
-
         CommandHandler handler = new JavacordHandler(api);
         handler.registerCommand(new WebsiteCommand());
         handler.registerCommand(new InviteCommand());

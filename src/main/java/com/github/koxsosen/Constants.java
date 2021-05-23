@@ -1,7 +1,5 @@
 package com.github.koxsosen;
 
-import java.util.Arrays;
-
 public final class Constants {
 
     public static final String PREFIX = ""; // Prefix
@@ -39,7 +37,7 @@ public final class Constants {
     }
 
     public static String SCRAPEURL() {
-        return  SCRAPEURL;
+        return SCRAPEURL;
     }
 
     public static String PROXYHOST() {

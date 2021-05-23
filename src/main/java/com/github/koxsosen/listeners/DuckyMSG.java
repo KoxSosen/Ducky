@@ -1,7 +1,5 @@
 package com.github.koxsosen.listeners;
 
-
-import com.github.koxsosen.Constants;
 import de.btobastian.sdcf4j.CommandHandler;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;

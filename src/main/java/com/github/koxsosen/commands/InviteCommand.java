@@ -13,7 +13,7 @@ public class InviteCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(InviteCommand.class);
 
-    @Command(aliases = {Constants.PREFIX +"inv"}, async = true, description = "Create an invite for the bot")
+    @Command(aliases = {Constants.PREFIX +"inv"}, async = true, description = "Create an invite for Ducky")
     public void onCommand(TextChannel channel, Message message) {
         if (message.getAuthor().isBotUser()) {
             return;

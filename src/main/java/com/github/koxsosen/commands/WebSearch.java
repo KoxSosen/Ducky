@@ -25,7 +25,7 @@ public class WebSearch implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(WebSearch.class);
 
-    @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on" + Constants.SCRAPEURL)
+    @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on " + Constants.SCRAPEURL)
     public void onCommand(TextChannel channel, Message message) {
         if (message.getAuthor().isBotUser()) {
             return;

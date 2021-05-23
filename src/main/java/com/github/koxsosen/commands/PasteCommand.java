@@ -13,7 +13,7 @@ public class PasteCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(PasteCommand.class);
 
-    @Command(aliases = {Constants.PREFIX +"paste"}, async = true, description = "Shows duckys paste")
+    @Command(aliases = {Constants.PREFIX +"paste"}, async = true, description = "Shows Ducky's paste")
     public void onCommand(TextChannel channel, Message message) {
         if (message.getAuthor().isBotUser()) {
             return;

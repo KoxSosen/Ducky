@@ -13,7 +13,7 @@ public class WebsiteCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(WebsiteCommand.class);
 
-    @Command(aliases = {Constants.PREFIX +"site"}, async = true, description = "Shows ducky's site")
+    @Command(aliases = {Constants.PREFIX +"site"}, async = true, description = "Shows Ducky's site")
     public void onCommand(TextChannel channel, Message message) {
         if (message.getAuthor().isBotUser()) {
             return;
