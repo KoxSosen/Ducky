@@ -8,4 +8,6 @@
         status=""
     [paste]
         pasteurl=""
+    [search]
+        scrapeurl=""
 # End
