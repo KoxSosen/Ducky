@@ -14,6 +14,10 @@ public final class Constants {
 
     public static final String SCRAPEURL = "https://duckduckgo.com/html/?q=";
 
+    public static final String PROXYHOST = "127.0.1";
+
+    public static final Integer PROXYPORT = 8888;
+
     private Constants() { }
 
     public static String STATUS() {
@@ -35,4 +39,12 @@ public final class Constants {
     public static String SCRAPEURL() {
         return  SCRAPEURL;
     }
+
+    public static String PROXYHOST() {
+        return PROXYHOST;
+    }
+    public static Integer PROXYPORT() {
+        return PROXYPORT;
+    }
+
 }

@@ -35,22 +35,26 @@ public class WebSearch implements CommandExecutor {
                 message.getAuthor().getName() + "`'s search query:");
 
             try {
-                Document doc = null;
-                doc = Jsoup.connect(Constants.SCRAPEURL
-                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20")).timeout(0).get();
-                logger.info(message.getAuthor()
+                Document doc = Jsoup.connect(Constants.SCRAPEURL
+                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20"))
+                        .proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
+                        .get();
+
+                logger.info(message.getAuthor().getId()
                         + " requested "
                         + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
                         + " in " + channel.getIdAsString());
 
                 Elements results = doc.getElementById("links").getElementsByClass("results_links");
 
-                for (Element result : results) {
+                for (int i = 0, resultsSize = results.size(); i < resultsSize; i++) {
+                    Element result = results.get(i);
                     Element title = result.getElementsByClass("links_main").first().getElementsByTag("a").first();
                     channel.sendMessage("**Title** - " + title.text());
                     channel.sendMessage("**Description** - " + result.getElementsByClass("result__snippet").first().text());
                     channel.sendMessage("**Link** - " +
                             title.attr("href"));
+                    break;
                 }
             } catch (IOException e) {
                 logger.warn(e);
