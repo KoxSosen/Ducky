@@ -36,13 +36,16 @@ public class WebSearch implements CommandExecutor {
 
             try {
                 Document doc = null;
-                doc = Jsoup.connect(Constants.SCRAPEURL + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20")).timeout(0).get();
-                logger.info(message.getAuthor() + " requested " + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
-                + " in " + channel.getIdAsString());
+                doc = Jsoup.connect(Constants.SCRAPEURL
+                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20")).timeout(0).get();
+                logger.info(message.getAuthor()
+                        + " requested "
+                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
+                        + " in " + channel.getIdAsString());
 
                 Elements results = doc.getElementById("links").getElementsByClass("results_links");
 
-                for(Element result: results){
+                for (Element result : results) {
 
                     Element title = result.getElementsByClass("links_main").first().getElementsByTag("a").first();
                     channel.sendMessage("**Title** - " + title.text());
