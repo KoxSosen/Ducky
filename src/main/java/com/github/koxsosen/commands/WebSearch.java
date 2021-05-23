@@ -46,7 +46,6 @@ public class WebSearch implements CommandExecutor {
                 Elements results = doc.getElementById("links").getElementsByClass("results_links");
 
                 for (Element result : results) {
-
                     Element title = result.getElementsByClass("links_main").first().getElementsByTag("a").first();
                     channel.sendMessage("**Title** - " + title.text());
                     channel.sendMessage("**Description** - " + result.getElementsByClass("result__snippet").first().text());

@@ -6,7 +6,7 @@
 
 Ducky is a discord bot written in [Javacord](https://github.com/Javacord/Javacord), using the [sdcf4j](https://github.com/Bastian/sdcf4j) framework.
 
-### Invite here: [Click](https://ducky.hahota.net/)
+#### Invite: [Click Here](https://ducky.hahota.net/)
 
 Features:
 - URL Scraping.
