@@ -36,7 +36,7 @@ public class WebSearch implements CommandExecutor {
 
             try {
                 Document doc = null;
-                doc = Jsoup.connect(Constants.SCRAPEURL + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20")).get();
+                doc = Jsoup.connect(Constants.SCRAPEURL + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20")).timeout(0).get();
                 logger.info(message.getAuthor() + " requested " + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
                 + " in " + channel.getIdAsString());
 
