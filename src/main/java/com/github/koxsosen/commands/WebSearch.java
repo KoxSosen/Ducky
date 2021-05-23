@@ -37,8 +37,13 @@ public class WebSearch implements CommandExecutor {
             try {
                 Document doc = Jsoup.connect(Constants.SCRAPEURL
                         + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20"))
-                        .proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
+                        //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
+
+                if (message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20").isEmpty()) {
+                    channel.sendMessage("**No search query specified. Example:** `" + Constants.PREFIX + "car`");
+                    return;
+                }
 
                 logger.info(message.getAuthor().getId()
                         + " requested "
