@@ -19,7 +19,7 @@ public class PasteCommand implements CommandExecutor {
             return;
         }
 
-       channel.sendMessage("Hello! :wave: \nPlease use a paste service: " + Constants.PASTEURL());
+       channel.sendMessage("**Ducky** - Hello! :wave: \nPlease use a paste service: " + Constants.PASTEURL());
         logger.info(message.getAuthor() + " requested this command.");
     }
 }
