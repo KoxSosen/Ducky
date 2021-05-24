@@ -36,7 +36,7 @@ public class WebSearch implements CommandExecutor {
 
             try {
                 Document doc = Jsoup.connect(Constants.SCRAPEURL
-                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20"))
+                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20") + Constants.ISSAFESEARCH)
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
 
@@ -78,5 +78,7 @@ public class WebSearch implements CommandExecutor {
                 logger.warn(e);
             }
         }
+
+
 
 }

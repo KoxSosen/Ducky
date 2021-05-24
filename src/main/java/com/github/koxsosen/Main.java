@@ -51,6 +51,7 @@ public class Main {
         handler.registerCommand(new PasteCommand());
         handler.registerCommand(new HelpCommand());
         handler.registerCommand(new WebSearch());
+        handler.registerCommand(new CatCommand());
 
         api.addMessageCreateListener(new DuckyMSG(handler));
 

@@ -19,7 +19,7 @@ public class WebsiteCommand implements CommandExecutor {
             return;
         }
 
-        channel.sendMessage("Ducky has it's own website! \n https://ducky.hahota.net");
+        channel.sendMessage("Ducky has it's own website! \nhttps://ducky.hahota.net");
         logger.info(message.getAuthor() + " requested this command.");
     }
 }

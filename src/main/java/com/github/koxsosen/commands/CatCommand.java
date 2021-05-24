@@ -8,18 +8,19 @@ import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
 
+public class CatCommand implements CommandExecutor {
 
-public class InviteCommand implements CommandExecutor {
 
-    private static final Logger logger = LogManager.getLogger(InviteCommand.class);
+    private static final Logger logger = LogManager.getLogger(CatCommand.class);
 
-    @Command(aliases = {Constants.PREFIX +"inv"}, async = true, description = "Create an invite for Ducky")
+    @Command(aliases = {Constants.PREFIX +"cat"}, async = true, description = "Get a random cat image from the web")
     public void onCommand(TextChannel channel, Message message) {
         if (message.getAuthor().isBotUser()) {
             return;
         }
 
-        channel.sendMessage("**Ducky** - You can invite the bot using the following url: \n" + message.getApi().createBotInvite());
+        channel.sendMessage("**Ducky** - The cat command will be back soon!");
         logger.info(message.getAuthor() + " requested this command.");
     }
 }
+
