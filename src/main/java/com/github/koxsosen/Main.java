@@ -30,11 +30,10 @@ public class Main {
 
         // Login using the discord api
         DiscordApi api = new DiscordApiBuilder()
-                .setToken(Constants.TOKEN)
+                .setToken(Constants.TOKEN())
                 .setAllIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES) // Disable unneeded Intents.
                 .setWaitForServersOnStartup(false)
                 .login().join();
-                logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
                 // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
                 api.setReconnectDelay(attempt -> attempt * 2);
                 // Only cache 10 messages per channel & remove ones older than 1 hour.
@@ -56,6 +55,7 @@ public class Main {
         api.addMessageCreateListener(new DuckyMSG(handler));
 
         // Print the invite url of your bot
+        logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
 
         }
