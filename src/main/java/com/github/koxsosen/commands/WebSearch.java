@@ -18,6 +18,8 @@ import java.util.Locale;
 public class WebSearch implements CommandExecutor {
 
 
+
+
     /*
     * Copyright (c) 2021, KoxSosen
     * All rights reserved.
