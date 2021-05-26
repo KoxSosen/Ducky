@@ -21,11 +21,12 @@ public class HelpCommand implements CommandExecutor {
 
         channel.sendMessage("**Ducky** is mostly a web search utility for discord, but has other features too: " +
                 "\n \n :white_check_mark: - **Web Search:** `" + Constants.PREFIX() + "g` " +
+                "\n :white_check_mark: - Random Duck image: `" + Constants.PREFIX() + "duck`" +
                 "\n :white_check_mark: - Self Hosted Paste Server: `" + Constants.PREFIX() + "paste` " +
                 "\n :white_check_mark: - Ducky\\'s website: `" + Constants.PREFIX() + "site` " +
                 "\n :white_check_mark: - Invite the bot: `" + Constants.PREFIX() + "inv` " +
                 "\n :white_check_mark: - Help: `" + Constants.PREFIX() + "help`  " +
-                "\n :x: - Random Cat Pic: `" + Constants.PREFIX() + "cat` " +
+                "\n :white_check_mark: - Random Cat Image: `" + Constants.PREFIX() + "cat` " +
                 "\n :x: - Random Inspirational Quote: `" + Constants.PREFIX() + "quote` " +
                 "\n :x: - Rock Paper Scissors: `" + Constants.PREFIX() + "rps` " +
                 "\n \n Ducky is currently under a recode:" +

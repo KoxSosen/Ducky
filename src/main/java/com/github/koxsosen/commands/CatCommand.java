@@ -7,7 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
-import org.json.JSONObject;
+
+import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,8 +27,24 @@ public class CatCommand implements CommandExecutor {
             return;
         }
 
+        String catimageUrl = "none";
 
-        channel.sendMessage("**Ducky** - The cat command will be back soon!");
+        try {
+            HttpURLConnection con = (HttpURLConnection) new URL("https://api.thecatapi.com/v1/images/search").openConnection();
+            con.setRequestMethod("GET");
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
+            String s = br.readLine();
+
+            if (s != null && s.length() > 0) {
+                JSONArray jsonArray = new JSONArray(s.trim());
+                catimageUrl = jsonArray.getJSONObject(0).getString("url");
+            }
+
+        } catch (IOException malformedURLException) {
+            malformedURLException.printStackTrace();
+        }
+        channel.sendMessage(catimageUrl);
         logger.info(message.getAuthor() + " requested this command.");
     }
 
