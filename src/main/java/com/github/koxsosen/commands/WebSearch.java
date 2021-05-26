@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
+import org.javacord.api.entity.message.MessageBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,8 +17,6 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class WebSearch implements CommandExecutor {
-
-
 
 
     /*
@@ -32,58 +31,53 @@ public class WebSearch implements CommandExecutor {
         if (message.getAuthor().isBotUser()) {
             return;
         }
-        message.getContent();
-        channel.sendMessage("**Ducky** - `" +
-                message.getAuthor().getName() + "`'s search query:");
 
             try {
                 Document doc = Jsoup.connect(Constants.SCRAPEURL
-                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20") + Constants.ISSAFESEARCH)
+                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
+                        .replace(" ", "%20") + Constants.ISSAFESEARCH)
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
 
                 // Check if it's empty, so we can return if it is.
-                if (message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20").isEmpty()) {
+                if (message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
+                        .replace(" ", "%20").isEmpty()) {
                     channel.sendMessage("**No search query specified!** - Example: `" + Constants.PREFIX + "g car`");
                     return;
                 }
 
-                if (message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20").length() > 128) {
-                    channel.sendMessage("**The max caracter limit you can search for is 128 characters.**");
+                if (message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
+                        .replace(" ", "%20").length() > 86) {
+                    channel.sendMessage("**The max caracters you can search for is 86.**");
                     return;
                 }
-
-                // TODO
-                // Add some short of regex for words.
 
                 logger.info(message.getAuthor().getId()
                         + " requested "
                         + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
-                        + " in " + channel.getIdAsString());
+                        + " in " + channel.getId());
 
                 Elements results = doc.getElementById("links").getElementsByClass("results_links");
 
-
-                // Run a loop to get the results, break if you find em
                 for (int i = 0, resultsSize = results.size(); i < resultsSize; i++) {
+
                     Element result = results.get(i);
+
                     Element title = result.getElementsByClass("links_main").first().getElementsByTag("a").first();
-                    // If the first result doesn't have a title than that means that the query couldn't find anything
                     if (!title.hasText()) {
                         channel.sendMessage("**No search query found!**");
                         break;
                     }
-                    channel.sendMessage("**Title** - " + title.text().replaceAll("@", "@-"));
-                    channel.sendMessage("**Description** - " + result.getElementsByClass("result__snippet").first().text().replaceAll("@", "@-"));
-                    channel.sendMessage("**Link** - <" +
-                            title.attr("href") + ">"); // Don't show preview
+                    new MessageBuilder()
+                            .append("**Ducky** - `" + message.getAuthor().getName() + "`'s search query:")
+                            .append("\n**Title** - " + title.text().replaceAll("@", "@-"))
+                            .append("\n**Description** - " + result.getElementsByClass("result__snippet").first().text().replaceAll("@", "@-"))
+                            .append("\n**Link** - <" + title.attr("href") + ">") // Don't show previews
+                    .send(channel);
                     break;
                 }
             } catch (IOException e) {
                 logger.warn(e);
             }
         }
-
-
-
 }

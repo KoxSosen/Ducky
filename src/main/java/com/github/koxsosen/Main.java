@@ -22,23 +22,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Set a fallback if Log4j isn't found.
         FallbackLoggerConfiguration.setDebug(false);
 
         logger.info("The bots prefix is " + Constants.PREFIX());
         logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
 
-        // Login using the discord api
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(Constants.TOKEN())
-                .setAllIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES) // Disable unneeded Intents.
+                .setAllNonPrivilegedIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES, Intent.GUILD_WEBHOOKS) // Disable unneeded Intents.
                 .setWaitForServersOnStartup(false)
                 .login().join();
                 // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
                 api.setReconnectDelay(attempt -> attempt * 2);
-                // Only cache 10 messages per channel & remove ones older than 1 hour.
-                api.setMessageCacheSize(10, 60*60);
-
+                // Only cache 10 messages per channel & remove ones older than 30 min.
+                api.setMessageCacheSize(10, 30*30);
 
         // Set the bots status
         api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
