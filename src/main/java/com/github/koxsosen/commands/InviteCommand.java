@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
+import org.javacord.api.entity.permission.PermissionType;
+import org.javacord.api.entity.permission.PermissionsBuilder;
 
 
 public class InviteCommand implements CommandExecutor {
@@ -19,7 +21,11 @@ public class InviteCommand implements CommandExecutor {
             return;
         }
 
-        channel.sendMessage("**Ducky** - You can invite the bot using the following url: \n" + message.getApi().createBotInvite());
+        channel.sendMessage("**Ducky** - You can invite the bot using the following url: \n"
+                + message.getApi().createBotInvite(new PermissionsBuilder().setAllowed(
+                        PermissionType.MANAGE_CHANNELS,
+                        PermissionType.SEND_MESSAGES,
+                        PermissionType.READ_MESSAGE_HISTORY).build()));
         logger.info(message.getAuthor() + " requested this command.");
     }
 }
