@@ -48,6 +48,11 @@ public class WebSearch implements CommandExecutor {
                     return;
                 }
 
+                if (message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim().replace(" ", "%20").length() > 128) {
+                    channel.sendMessage("**The max caracter limit you can search for is 128 characters.**");
+                    return;
+                }
+
                 // TODO
                 // Add some short of regex for words.
 
@@ -59,21 +64,19 @@ public class WebSearch implements CommandExecutor {
                 Elements results = doc.getElementById("links").getElementsByClass("results_links");
 
 
-
                 // Run a loop to get the results, break if you find em
                 for (int i = 0, resultsSize = results.size(); i < resultsSize; i++) {
                     Element result = results.get(i);
                     Element title = result.getElementsByClass("links_main").first().getElementsByTag("a").first();
                     // If the first result doesn't have a title than that means that the query couldn't find anything
-                    // Due to how duckduckgo operates.
                     if (!title.hasText()) {
                         channel.sendMessage("**No search query found!**");
                         break;
                     }
-                    channel.sendMessage("**Title** - " + title.text());
-                    channel.sendMessage("**Description** - " + result.getElementsByClass("result__snippet").first().text());
+                    channel.sendMessage("**Title** - " + title.text().replace("@", "@-"));
+                    channel.sendMessage("**Description** - " + result.getElementsByClass("result__snippet").first().text().replace("@", "@-"));
                     channel.sendMessage("**Link** - " +
-                            title.attr("href"));
+                            title.attr("<href>"));
                     break;
                 }
             } catch (IOException e) {
