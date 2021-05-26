@@ -73,10 +73,10 @@ public class WebSearch implements CommandExecutor {
                         channel.sendMessage("**No search query found!**");
                         break;
                     }
-                    channel.sendMessage("**Title** - " + title.text().replace("@", "@-"));
-                    channel.sendMessage("**Description** - " + result.getElementsByClass("result__snippet").first().text().replace("@", "@-"));
-                    channel.sendMessage("**Link** - " +
-                            title.attr("<href>"));
+                    channel.sendMessage("**Title** - " + title.text().replaceAll("@", "@-"));
+                    channel.sendMessage("**Description** - " + result.getElementsByClass("result__snippet").first().text().replaceAll("@", "@-"));
+                    channel.sendMessage("**Link** - <" +
+                            title.attr("href") + ">"); // Don't show preview
                     break;
                 }
             } catch (IOException e) {
