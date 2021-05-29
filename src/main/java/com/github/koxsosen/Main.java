@@ -15,7 +15,6 @@ import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.intent.Intent;
 import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
-
 public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
@@ -26,6 +25,7 @@ public class Main {
 
         logger.info("The bots prefix is " + Constants.PREFIX());
         logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
+
 
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(Constants.TOKEN())
@@ -49,6 +49,7 @@ public class Main {
         handler.registerCommand(new WebSearch());
         handler.registerCommand(new CatCommand());
         handler.registerCommand(new DuckCommand());
+        handler.registerCommand(new DogCommand());
 
         api.addMessageCreateListener(new DuckyMSG(handler));
 
@@ -57,5 +58,8 @@ public class Main {
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
 
         }
+
+
+
 
 }

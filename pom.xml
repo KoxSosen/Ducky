@@ -6,7 +6,7 @@
 
     <groupId>com.github.koxsosen</groupId>
     <artifactId>Ducky</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
 
 
     <build>
@@ -88,7 +88,6 @@
             <artifactId>jsoup</artifactId>
             <version>1.10.3</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
