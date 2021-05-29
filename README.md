@@ -13,6 +13,10 @@ Features:
 - Async and Multi Threaded commands.
 - Easy to use.
 
-At the moment **the bot is under development**, as this is a recode in Java from NodeJs.
+Check out these amazing people: 
+
+- [Geri](https://github.com/NotGeri) - Code support for the Duck,Cat,Dog command.
+- [Charlie](https://github.com/TTRCharlie) - Testing the bot
+- [flori4nk](https://github.com/flori4nk) - Support with general code.
 
 Pull requests are welcome.
