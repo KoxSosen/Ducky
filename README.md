@@ -16,7 +16,9 @@ Features:
 Check out these amazing people: 
 
 - [Geri](https://github.com/NotGeri) - Code support for the Duck,Cat,Dog command.
-- [Charlie](https://github.com/TTRCharlie) - Testing the bot
+- [Charlie](https://github.com/TTRCharlie) - Testing with the bot.
 - [flori4nk](https://github.com/flori4nk) - Support with general code.
 
 Pull requests are welcome.
+
+Self hosting Ducky isn't supported. 
