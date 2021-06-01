@@ -30,13 +30,23 @@ public class Main {
 
         DiscordApi api = new DiscordApiBuilder()
                 .setToken(Constants.TOKEN())
-                .setAllNonPrivilegedIntentsExcept(Intent.GUILD_EMOJIS, Intent.GUILD_BANS, Intent.GUILD_INVITES, Intent.DIRECT_MESSAGES, Intent.GUILD_WEBHOOKS) // Disable unneeded Intents.
                 .setWaitForServersOnStartup(false)
+                .setAllNonPrivilegedIntentsExcept(
+                        Intent.GUILD_EMOJIS,
+                        Intent.GUILD_BANS,
+                        Intent.GUILD_INVITES,
+                        Intent.DIRECT_MESSAGES,
+                        Intent.GUILD_INTEGRATIONS,
+                        Intent.GUILD_WEBHOOKS,
+                        Intent.DIRECT_MESSAGE_REACTIONS,
+                        Intent.DIRECT_MESSAGE_TYPING,
+                        Intent.GUILD_MESSAGE_TYPING,
+                        Intent.GUILD_VOICE_STATES) // Disable unneeded Intents.
                 .login().join();
                 // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
                 api.setReconnectDelay(attempt -> attempt * 2);
                 // Only cache 10 messages per channel & remove ones older than 30 min.
-                api.setMessageCacheSize(10, 30*30);
+                api.setMessageCacheSize(10, 60*60);
 
         // Set the bots status
         api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
