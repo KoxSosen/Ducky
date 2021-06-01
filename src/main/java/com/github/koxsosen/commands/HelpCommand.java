@@ -24,7 +24,7 @@ public class HelpCommand implements CommandExecutor {
                 .append("\n \n - Web Search: `" + Constants.PREFIX() + "g` ")
                 .append("\n - Random Cat Image: `" + Constants.PREFIX() + "cat` " )
                 .append("\n - Random Duck Image: `" + Constants.PREFIX() + "duck`" )
-                .append("\n - Random Dog Image `" + Constants.PREFIX() + "dog`")
+                .append("\n - Random Dog Image: `" + Constants.PREFIX() + "dog`")
                 .append("\n - Self Hosted Paste Server: `" + Constants.PREFIX() + "paste` " )
                 .append("\n - Ducky\\'s website: `" + Constants.PREFIX() + "site` " )
                 .append("\n - Invite the bot: `" + Constants.PREFIX() + "inv` " )

@@ -2,6 +2,7 @@ package com.github.koxsosen;
 
 
 import com.github.koxsosen.commands.*;
+import com.github.koxsosen.debug.DebugCommand;
 import com.github.koxsosen.listeners.DuckyMSG;
 import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
@@ -50,6 +51,7 @@ public class Main {
         handler.registerCommand(new CatCommand());
         handler.registerCommand(new DuckCommand());
         handler.registerCommand(new DogCommand());
+        handler.registerCommand(new DebugCommand());
 
         api.addMessageCreateListener(new DuckyMSG(handler));
 
