@@ -31,15 +31,12 @@ public class DebugCommand implements CommandExecutor {
         long uptimemin = TimeUnit.MILLISECONDS.toMinutes(uptime);
         long uptimehr = TimeUnit.MILLISECONDS.toHours(uptime);
 
-
-        System.gc();Runtime runtime = Runtime.getRuntime();
-        long freeMemory = runtime.totalMemory();
-        long freeMemoryMB = freeMemory / (1024L * 1024L);
+        int dataSize = 1024*1024;
 
         new MessageBuilder()
         .append("**Ducky** - Debug Information:")
                 .append("\n \n Uptime: `" + uptimehr + "` h `" + uptimemin + "` min.")
-                .append("\n Free Memory: `" + freeMemoryMB + "` mb.")
+                .append("\n Used memory: `" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/dataSize + "` mb.")
                 .send(channel);
 
 
