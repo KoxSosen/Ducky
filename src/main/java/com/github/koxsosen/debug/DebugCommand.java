@@ -24,6 +24,7 @@ public class DebugCommand implements CommandExecutor {
     @Command(aliases = {Constants.PREFIX +"debug"}, async = true, description = "Debug command for ducky")
     public void onCommand(TextChannel channel, Message message) {
         if (!message.getAuthor().isBotOwner()) {
+            channel.sendMessage("**Ducky** - You can't use this command.");
             return;
         }
 
@@ -32,6 +33,7 @@ public class DebugCommand implements CommandExecutor {
         long uptimehr = TimeUnit.MILLISECONDS.toHours(uptime);
 
         int dataSize = 1024*1024;
+
 
         new MessageBuilder()
         .append("**Ducky** - Debug Information:")

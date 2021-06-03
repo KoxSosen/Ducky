@@ -24,12 +24,8 @@ public class Main {
 
         FallbackLoggerConfiguration.setDebug(false);
 
-        logger.info("The bots prefix is " + Constants.PREFIX());
-        logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
-
-
         DiscordApi api = new DiscordApiBuilder()
-                .setToken(Constants.TOKEN())
+                .setToken(Constants.TOKEN)
                 .setWaitForServersOnStartup(false)
                 .setAllNonPrivilegedIntentsExcept(
                         Intent.GUILD_EMOJIS,
@@ -47,7 +43,6 @@ public class Main {
                 api.setReconnectDelay(attempt -> attempt * 2);
                 // Only cache 10 messages per channel & remove ones older than 60 min.
                 api.setMessageCacheSize(10, 60*60);
-
         // Set the bots status
         api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
 
@@ -65,7 +60,8 @@ public class Main {
 
         api.addMessageCreateListener(new DuckyMSG(handler));
 
-        // Print the invite url of your bot
+        logger.info("The bots prefix is " + Constants.PREFIX());
+        logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
         logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
         logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
 
