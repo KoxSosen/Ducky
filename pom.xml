@@ -6,7 +6,7 @@
 
     <groupId>com.github.koxsosen</groupId>
     <artifactId>Ducky</artifactId>
-    <version>1.3</version>
+    <version>1.3.5</version>
 
 
     <build>
@@ -102,9 +102,9 @@
             <version>20210307</version>
         </dependency>
         <dependency>
-            <groupId>space.arim.dazzleconf</groupId>
-            <artifactId>dazzleconf-ext-snakeyaml</artifactId>
-            <version>1.2.0-M2</version>
+            <groupId>info.macias</groupId>
+            <artifactId>kaconf</artifactId>
+            <version>0.9.0</version>
         </dependency>
     </dependencies>
 

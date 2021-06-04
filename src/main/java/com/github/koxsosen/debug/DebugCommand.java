@@ -37,8 +37,8 @@ public class DebugCommand implements CommandExecutor {
 
         new MessageBuilder()
         .append("**Ducky** - Debug Information:")
-                .append("\n \n Uptime: `" + uptimehr + "` h `" + uptimemin + "` min.")
-                .append("\n Used memory: `" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/dataSize + "` mb.")
+                .append("\n \n Uptime: `" + uptimehr + "` h or `" + uptimemin + "` min.")
+                .append("\n Used Memory: `" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/dataSize + "` mb.")
                 .send(channel);
 
 

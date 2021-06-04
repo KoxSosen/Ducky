@@ -22,6 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         FallbackLoggerConfiguration.setDebug(false);
 
         DiscordApi api = new DiscordApiBuilder()
