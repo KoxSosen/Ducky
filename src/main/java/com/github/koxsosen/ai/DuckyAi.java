@@ -41,11 +41,9 @@ public class DuckyAi implements CommandExecutor {
 
         // Feed the cache into megahal
         megaHal.add(content);
-        logger.info(content);
 
         // Get the generated sentence
         String sentence = megaHal.getSentence();
-        logger.info(sentence);
 
         // Send the generated sentence
         channel.sendMessage(sentence);
