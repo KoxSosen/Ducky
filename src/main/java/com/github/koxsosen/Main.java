@@ -1,6 +1,7 @@
 package com.github.koxsosen;
 
 
+import com.github.koxsosen.ai.DuckyAi;
 import com.github.koxsosen.commands.*;
 import com.github.koxsosen.debug.DebugCommand;
 import com.github.koxsosen.listeners.DuckyMSG;
@@ -58,6 +59,7 @@ public class Main {
         handler.registerCommand(new DuckCommand());
         handler.registerCommand(new DogCommand());
         handler.registerCommand(new DebugCommand());
+        handler.registerCommand(new DuckyAi());
 
         api.addMessageCreateListener(new DuckyMSG(handler));
 

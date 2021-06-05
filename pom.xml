@@ -67,6 +67,10 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>paradaux</id>
+            <url>https://repo.paradaux.io/releases</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -105,6 +109,11 @@
             <groupId>info.macias</groupId>
             <artifactId>kaconf</artifactId>
             <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.paradaux.ai</groupId>
+            <artifactId>MarkovMegaHal</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
