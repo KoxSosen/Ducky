@@ -63,6 +63,7 @@ public class Main {
 
         api.addMessageCreateListener(new DuckyMSG(handler));
 
+
         logger.info("The bots prefix is " + Constants.PREFIX());
         logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
         logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");

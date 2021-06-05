@@ -8,6 +8,12 @@ import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Objects;
+
+
 public class DuckyAi implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(DuckyAi.class);
@@ -21,9 +27,20 @@ public class DuckyAi implements CommandExecutor {
 
         // Create an instance for megahal
         MarkovMegaHal megaHal = new MarkovMegaHal();
+        String filefound = "words.txt";
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        File file = new File(Objects.requireNonNull(classLoader.getResource(filefound)).getFile());
+
+        String content = null;
+        try {
+            content = new String(Files.readAllBytes(file.toPath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Feed the cache into megahal
-        megaHal.add(channel.getMessageCache().toString());
+        megaHal.add(content);
 
         // Get the generated sentence
         String sentence = megaHal.getSentence();
