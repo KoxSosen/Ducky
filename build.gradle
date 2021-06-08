@@ -8,6 +8,10 @@ plugins {
     id 'application'
 }
 
+application {
+    mainClass = 'com.github.koxsosen.Main'
+}
+
 repositories {
     mavenLocal()
     maven {
