@@ -1,3 +1,7 @@
+
+/*  Copyright (C) 2021 KoxSosen */
+/* Full notice of the license can be found under ../LICENSE */
+
 package com.github.koxsosen.commands;
 
 import com.github.koxsosen.Constants;
@@ -19,11 +23,6 @@ import java.util.Locale;
 public class WebSearch implements CommandExecutor {
 
 
-    /*
-    * Copyright (c) 2021, KoxSosen
-    * All rights reserved.
-    */
-
     private static final Logger logger = LogManager.getLogger(WebSearch.class);
 
     @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on " + Constants.SCRAPEURL)
@@ -32,30 +31,26 @@ public class WebSearch implements CommandExecutor {
             return;
         }
 
+        String content = message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
+                .replace(" ", "%20");
+        int maxcharacters = 86;
+
             try {
-                Document doc = Jsoup.connect(Constants.SCRAPEURL
-                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
-                        .replace(" ", "%20") + Constants.ISSAFESEARCH)
+                Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH)
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
 
-                // Check if it's empty, so we can return if it is.
-                if (message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
-                        .replace(" ", "%20").isEmpty()) {
+                if (content.isEmpty()) {
                     channel.sendMessage("**No search query specified!** - Example: `" + Constants.PREFIX + "g car`");
                     return;
                 }
 
-                if (message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
-                        .replace(" ", "%20").length() > 86) {
-                    channel.sendMessage("**The max caracters you can search for is 86.**");
+                if (content.length() > maxcharacters) {
+                    channel.sendMessage("**Ducky** - The character limit is `" + maxcharacters + "` characters.");
                     return;
                 }
 
-                logger.info(message.getAuthor().getId()
-                        + " requested "
-                        + message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
-                        + " in " + channel.getId());
+                logger.info(message.getAuthor().getId() + " requested " + content + " in " + channel.getId());
 
                 Elements results = doc.getElementById("links").getElementsByClass("results_links");
 
@@ -65,14 +60,17 @@ public class WebSearch implements CommandExecutor {
 
                     Element title = result.getElementsByClass("links_main").first().getElementsByTag("a").first();
                     if (!title.hasText()) {
-                        channel.sendMessage("**No search query found!**");
+                        channel.sendMessage("**Ducky** - No search results found!");
                         break;
                     }
+
                     new MessageBuilder()
                             .append("**Ducky** - `" + message.getAuthor().getName() + "`'s search query:")
                             .append("\n**Title** - " + title.text().replaceAll("@", "@-"))
-                            .append("\n**Description** - " + result.getElementsByClass("result__snippet").first().text().replaceAll("@", "@-"))
+                            .append("\n**Description** - " + result.getElementsByClass("result__snippet").first().text()
+                                    .replaceAll("@", "@-"))
                             .append("\n**Link** - <" + title.attr("href") + ">") // Don't show previews
+
                     .send(channel);
                     break;
                 }
