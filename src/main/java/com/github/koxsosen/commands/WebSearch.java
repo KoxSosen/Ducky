@@ -1,6 +1,6 @@
 
-/*  Copyright (C) 2021 KoxSosen */
-/* Full notice of the license can be found under ../LICENSE */
+/*  Copyright (C) 2021 KoxSosen
+Full notice of the license can be found under ../LICENSE */
 
 package com.github.koxsosen.commands;
 
