@@ -12,14 +12,15 @@ Features:
 - URL Scraping.
 - Async and Multi Threaded commands.
 - Random duck/cat/dog images.
-- Easy to use.
+
+#### Use `.help` for the full list of commands.
 
 Check out these amazing people: 
 
-- [Geri](https://github.com/NotGeri) - Code support for the Duck, Cat, Dog command.
+- [Geri](https://github.com/NotGeri) - Code support with the Duck, Cat, Dog command.
 - [Charlie](https://github.com/TTRCharlie) - Testing with the bot.
-- [flori4nk](https://github.com/flori4nk) - Support with general code.
+- [flori4nk](https://github.com/flori4nk) - General code support.
 
 Pull requests are welcome.
 
-Self hosting Ducky isn't supported. 
+Self hosting Ducky isn't supported, and please see the license.
