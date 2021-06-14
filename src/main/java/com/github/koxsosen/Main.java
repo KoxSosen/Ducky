@@ -18,7 +18,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package com.github.koxsosen;
 
-import com.github.koxsosen.commands.*;
+import com.github.koxsosen.commands.CatCommand;
+import com.github.koxsosen.commands.DogCommand;
+import com.github.koxsosen.commands.DuckCommand;
+import com.github.koxsosen.commands.HelpCommand;
+import com.github.koxsosen.commands.InviteCommand;
+import com.github.koxsosen.commands.PasteCommand;
+import com.github.koxsosen.commands.WebSearch;
+import com.github.koxsosen.commands.WebsiteCommand;
 import com.github.koxsosen.debug.DebugCommand;
 import com.github.koxsosen.listeners.DuckyMSG;
 import de.btobastian.sdcf4j.CommandHandler;
@@ -38,7 +45,6 @@ public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-
 
         FallbackLoggerConfiguration.setDebug(false);
 

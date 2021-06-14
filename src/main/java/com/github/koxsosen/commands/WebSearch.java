@@ -35,6 +35,8 @@ public class WebSearch implements CommandExecutor {
                 .replace(" ", "%20");
         int maxcharacters = 86;
 
+        logger.info(message.getAuthor().getId() + " requested " + content + " in " + channel.getId());
+
             try {
                 Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH)
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
@@ -49,8 +51,6 @@ public class WebSearch implements CommandExecutor {
                     channel.sendMessage("**Ducky** - The character limit is `" + maxcharacters + "` characters.");
                     return;
                 }
-
-                logger.info(message.getAuthor().getId() + " requested " + content + " in " + channel.getId());
 
                 Elements results = doc.getElementById("links").getElementsByClass("results_links");
 
