@@ -18,20 +18,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package com.github.koxsosen;
 
+import de.btobastian.sdcf4j.CommandHandler;
+import com.github.koxsosen.listeners.DuckyMSG;
+import com.github.koxsosen.debug.DebugCommand;
+import com.github.koxsosen.commands.WebSearch;
 import com.github.koxsosen.commands.CatCommand;
 import com.github.koxsosen.commands.DogCommand;
 import com.github.koxsosen.commands.DuckCommand;
 import com.github.koxsosen.commands.HelpCommand;
 import com.github.koxsosen.commands.InviteCommand;
 import com.github.koxsosen.commands.PasteCommand;
-import com.github.koxsosen.commands.WebSearch;
 import com.github.koxsosen.commands.WebsiteCommand;
-import com.github.koxsosen.debug.DebugCommand;
-import com.github.koxsosen.listeners.DuckyMSG;
-import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
-import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.DiscordApi;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -87,7 +87,7 @@ public class Main {
         logger.info("The bots prefix is " + Constants.PREFIX());
         logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
         logger.info("Logged in as " + api.getYourself() + ", operating in " + api.getServers().size() + " servers.");
-        logger.info("You can invite the bot by using the following url: " + api.createBotInvite());
+        logger.info("You can invite " + api.getYourself() + " using the command `.inv`.");
 
         }
 

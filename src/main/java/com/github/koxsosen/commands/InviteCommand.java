@@ -25,7 +25,8 @@ public class InviteCommand implements CommandExecutor {
                 + message.getApi().createBotInvite(new PermissionsBuilder().setAllowed(
                         PermissionType.MANAGE_CHANNELS,
                         PermissionType.SEND_MESSAGES,
-                        PermissionType.READ_MESSAGE_HISTORY).build()));
+                        PermissionType.READ_MESSAGE_HISTORY)
+                .build()));
         logger.info(message.getAuthor() + " requested this command.");
     }
 }
