@@ -33,7 +33,7 @@ public class WebSearch implements CommandExecutor {
 
         String content = message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
                 .replace(" ", "%20");
-        int maxcharacters = 86;
+        int maxcharacters = 500;
 
         logger.info(message.getAuthor().getId() + " requested " + content + " in " + channel.getId());
 
