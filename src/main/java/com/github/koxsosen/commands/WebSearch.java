@@ -38,7 +38,7 @@ public class WebSearch implements CommandExecutor {
         String executor = message.getAuthor().getIdAsString();
 
             try {
-                Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH)
+                Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH) // Change order
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
 

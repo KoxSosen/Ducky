@@ -21,7 +21,7 @@ public class DuckCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(DuckCommand.class);
 
-    @Command(aliases = {Constants.PREFIX +"duck"}, async = true, description = "Send a random duck image")
+    @Command(aliases = {Constants.PREFIX + "duck"}, async = true, description = "Send a random duck image")
     public void onCommand(TextChannel channel, Message message) {
 
         AtomicReference <String> imageUrl = new AtomicReference <>("none");

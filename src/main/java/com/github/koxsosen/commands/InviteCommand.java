@@ -16,20 +16,18 @@ public class InviteCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(InviteCommand.class);
 
-    @Command(aliases = {Constants.PREFIX +"inv"}, async = true, description = "Create an invite for Ducky")
+    @Command(aliases = {Constants.PREFIX + "inv", Constants.PREFIX + "invite"}, async = true, description = "Create an invite for Ducky")
     public void onCommand(TextChannel channel, Message message) {
 
         new MessageBuilder()
                 .append("**Ducky** - You can invite the bot using the following url:")
-                .append("\n <")
+                .append("\n" + "<")
                 .append(message.getApi().createBotInvite(new PermissionsBuilder().setAllowed(
                         PermissionType.MANAGE_CHANNELS,
                         PermissionType.SEND_MESSAGES,
                         PermissionType.READ_MESSAGE_HISTORY)
                         .build()))
                 .append(">")
-                .append("\nThe bot's source code can be found here:")
-                .append("\n <https://github.com/KoxSosen/Ducky>")
                 .send(channel);
 
         logger.info(message.getAuthor() + " requested this command.");

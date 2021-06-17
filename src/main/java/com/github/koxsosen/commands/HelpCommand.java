@@ -5,6 +5,7 @@ import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.javacord.api.Javacord;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.MessageBuilder;
@@ -13,7 +14,7 @@ public class HelpCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(HelpCommand.class);
 
-    @Command(aliases = {Constants.PREFIX +"help"}, async = true, description = "Help command for ducky")
+    @Command(aliases = {Constants.PREFIX + "help", Constants.PREFIX + "halp"}, async = true, description = "Help command for ducky")
     public void onCommand(TextChannel channel, Message message) {
 
         new MessageBuilder()
