@@ -15,9 +15,6 @@ public class WebsiteCommand implements CommandExecutor {
 
     @Command(aliases = {Constants.PREFIX +"site"}, async = true, description = "Shows Ducky's site")
     public void onCommand(TextChannel channel, Message message) {
-        if (message.getAuthor().isBotUser()) {
-            return;
-        }
 
         channel.sendMessage("Ducky has it's own website! \nhttps://ducky.hahota.net");
         logger.info(message.getAuthor() + " requested this command.");

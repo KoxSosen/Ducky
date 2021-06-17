@@ -22,20 +22,20 @@ import java.util.Locale;
 
 public class WebSearch implements CommandExecutor {
 
-
     private static final Logger logger = LogManager.getLogger(WebSearch.class);
 
     @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on " + Constants.SCRAPEURL)
     public void onCommand(TextChannel channel, Message message) {
-        if (message.getAuthor().isBotUser()) {
-            return;
-        }
 
-        String content = message.getContent().toLowerCase(Locale.ROOT).substring(Constants.PREFIX().length() + 1).trim()
+        String content = message.getContent()
+                .toLowerCase(Locale.ROOT)
+                .substring(Constants.PREFIX().length() + 1)
+                .trim()
                 .replace(" ", "%20");
+
         int maxcharacters = 500;
 
-        logger.info(message.getAuthor().getId() + " requested " + content + " in " + channel.getId());
+        String executor = message.getAuthor().getIdAsString();
 
             try {
                 Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH)
@@ -77,5 +77,6 @@ public class WebSearch implements CommandExecutor {
             } catch (IOException e) {
                 logger.warn(e);
             }
+        logger.info(message.getAuthor().getId() + " requested " + content + " in " + channel.getId());
         }
 }

@@ -17,9 +17,6 @@ public class InviteCommand implements CommandExecutor {
 
     @Command(aliases = {Constants.PREFIX +"inv"}, async = true, description = "Create an invite for Ducky")
     public void onCommand(TextChannel channel, Message message) {
-        if (message.getAuthor().isBotUser()) {
-            return;
-        }
 
         channel.sendMessage("**Ducky** - You can invite the bot using the following url: \n"
                 + message.getApi().createBotInvite(new PermissionsBuilder().setAllowed(

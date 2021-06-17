@@ -15,9 +15,6 @@ public class PasteCommand implements CommandExecutor {
 
     @Command(aliases = {Constants.PREFIX +"paste"}, async = true, description = "Shows Ducky's paste")
     public void onCommand(TextChannel channel, Message message) {
-        if (message.getAuthor().isBotUser()) {
-            return;
-        }
 
        channel.sendMessage("**Ducky** - Hello! :wave: " +
                "\nPlease use a paste service: " + Constants.PASTEURL());

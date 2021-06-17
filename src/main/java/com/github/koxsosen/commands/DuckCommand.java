@@ -23,9 +23,6 @@ public class DuckCommand implements CommandExecutor {
 
     @Command(aliases = {Constants.PREFIX +"duck"}, async = true, description = "Send a random duck image")
     public void onCommand(TextChannel channel, Message message) {
-        if (message.getAuthor().isBotUser()) {
-            return;
-        }
 
         AtomicReference <String> imageUrl = new AtomicReference <>("none");
 

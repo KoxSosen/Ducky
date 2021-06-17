@@ -15,9 +15,6 @@ public class HelpCommand implements CommandExecutor {
 
     @Command(aliases = {Constants.PREFIX +"help"}, async = true, description = "Help command for ducky")
     public void onCommand(TextChannel channel, Message message) {
-        if (message.getAuthor().isBotUser()) {
-            return;
-        }
 
         new MessageBuilder()
                 .append("**Ducky** is mostly a web search utility for discord, but has other features too:")
