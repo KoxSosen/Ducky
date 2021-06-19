@@ -77,6 +77,6 @@ public class WebSearch implements CommandExecutor {
             } catch (IOException e) {
                 logger.warn(e);
             }
-        logger.info(message.getAuthor().getId() + " requested " + content + " in " + channel.getId());
+        logger.info(message.getAuthor() + " : " + content + " in " + channel.getId());
         }
 }

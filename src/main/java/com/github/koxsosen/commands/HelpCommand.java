@@ -28,6 +28,6 @@ public class HelpCommand implements CommandExecutor {
                 .append("\n - Help: `" + Constants.PREFIX() + "help`  " )
                 .append("\n \n Created by `287312849297080320` with love.")
                 .send(channel);
-        logger.info(message.getAuthor() + " requested this command."); // Add dynamic owner
+        logger.info(message.getAuthor()); // Add dynamic owner
     }
 }

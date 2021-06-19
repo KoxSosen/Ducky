@@ -30,6 +30,6 @@ public class InviteCommand implements CommandExecutor {
                 .append(">")
                 .send(channel);
 
-        logger.info(message.getAuthor() + " requested this command.");
+        logger.info(message.getAuthor());
     }
 }

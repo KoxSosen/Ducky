@@ -42,7 +42,7 @@ public class CatCommand implements CommandExecutor {
             malformedURLException.printStackTrace();
         }
         channel.sendMessage(catimageUrl);
-        logger.info(message.getAuthor() + " requested this command.");
+        logger.info(message.getAuthor());
     }
 
 

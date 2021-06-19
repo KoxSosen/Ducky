@@ -42,7 +42,7 @@ public class DuckCommand implements CommandExecutor {
             malformedURLException.printStackTrace();
         }
         channel.sendMessage(imageUrl.get());
-        logger.info(message.getAuthor() + " requested this command.");
+        logger.info(message.getAuthor());
     }
 
 

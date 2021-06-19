@@ -24,6 +24,6 @@ public class WebsiteCommand implements CommandExecutor {
                 .append("\n" + "<https://github.com/KoxSosen/Ducky>")
                 .send(channel);
 
-        logger.info(message.getAuthor() + " requested this command.");
+        logger.info(message.getAuthor());
     }
 }

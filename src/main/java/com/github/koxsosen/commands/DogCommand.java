@@ -42,7 +42,7 @@ public class DogCommand implements CommandExecutor {
             malformedURLException.printStackTrace();
         }
         channel.sendMessage(dogimageUrl);
-        logger.info(message.getAuthor() + " requested this command.");
+        logger.info(message.getAuthor());
     }
 
 
