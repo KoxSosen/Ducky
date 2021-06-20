@@ -65,11 +65,12 @@ public class WebSearch implements CommandExecutor {
                     }
 
                     new MessageBuilder()
-                            .append("**Ducky** - `" + message.getAuthor().getName() + "`'s search query:")
+                            .append("**Ducky** - `" + message.getAuthor().getName() + "`'s search:")
                             .append("\n**Title** - " + title.text().replaceAll("@", "@-"))
                             .append("\n**Description** - " + result.getElementsByClass("result__snippet").first().text()
                                     .replaceAll("@", "@-"))
                             .append("\n**Link** - <" + title.attr("href") + ">") // Don't show previews
+                            .append("\n**Promotion** - If you enjoy Ducky, please vote: <https://top.gg/bot/805150455378345994>")
 
                     .send(channel);
                     break;
