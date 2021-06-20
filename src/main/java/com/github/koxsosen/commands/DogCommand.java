@@ -20,7 +20,6 @@ public class DogCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(DogCommand.class);
 
-
     @Command(aliases = {Constants.PREFIX + "dog"}, async = true, description = "Get a random dog image from the web")
     public void onCommand(TextChannel channel, Message message) {
 

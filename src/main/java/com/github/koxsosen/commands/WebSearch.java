@@ -35,7 +35,7 @@ public class WebSearch implements CommandExecutor {
 
         int maxcharacters = 500;
 
-        String executor = message.getAuthor().getIdAsString();
+        logger.info(message.getAuthor() + " : [ " + content + " ] in " + channel.getId());
 
             try {
                 Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH) // Change order
@@ -70,7 +70,6 @@ public class WebSearch implements CommandExecutor {
                             .append("\n**Description** - " + result.getElementsByClass("result__snippet").first().text()
                                     .replaceAll("@", "@-"))
                             .append("\n**Link** - <" + title.attr("href") + ">") // Don't show previews
-                            .append("\n**Promotion** - If you enjoy Ducky, please vote: <https://top.gg/bot/805150455378345994>")
 
                     .send(channel);
                     break;
@@ -78,6 +77,5 @@ public class WebSearch implements CommandExecutor {
             } catch (IOException e) {
                 logger.warn(e);
             }
-        logger.info(message.getAuthor() + " : " + content + " in " + channel.getId());
         }
 }

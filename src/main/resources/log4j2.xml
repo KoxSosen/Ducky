@@ -3,7 +3,7 @@
     <Appenders>
         <Console name="Console Appender">
             <PatternLayout>
-                <Pattern><![CDATA[%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n]]></Pattern>
+                <Pattern><![CDATA[%d{HH:mm:ss.SSS} [%t] %-5level %logger{0} - %msg%n]]></Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="INFO"/>
@@ -11,12 +11,12 @@
         </Console>
         <!--<File name="File Appender" fileName="log/ducky.log" createOnDemand="true">
            <PatternLayout>
-               <Pattern><![CDATA[%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n]]></Pattern>
+               <Pattern><![CDATA[%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0} - %msg%n]]></Pattern>
            </PatternLayout>
        </File>-->
    </Appenders>
    <Loggers>
-       <Root level="DEBUG">
+       <Root level="INFO">
            <AppenderRef ref="Console Appender"/>
            <!--<AppenderRef ref="File Appender"/>-->
       </Root>
