@@ -30,8 +30,8 @@ public class WebSearch implements CommandExecutor {
     @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on " + Constants.SCRAPEURL)
     public void onCommand(TextChannel channel, Message message) {
 
-        if (cooldown.getOrDefault(message.getAuthor().getId(), 0L) > System.currentTimeMillis() - 5000) {
-            channel.sendMessage("**Ducky** - Please wait 5 seconds before running this command again.");
+        if (cooldown.getOrDefault(message.getAuthor().getId(), 0L) > System.currentTimeMillis() - 4000) {
+            channel.sendMessage("**Ducky** - Please wait 4 seconds before running this command again.");
             logger.info("Cooldown: " + message.getAuthor() + " in " + channel.getId());
             return;
         }
