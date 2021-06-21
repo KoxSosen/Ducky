@@ -18,14 +18,25 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class WebSearch implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(WebSearch.class);
 
+    private final HashMap<Long, Long> cooldown = new HashMap <>();
+
     @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on " + Constants.SCRAPEURL)
     public void onCommand(TextChannel channel, Message message) {
+
+        if (cooldown.getOrDefault(message.getAuthor().getId(), 0L) > System.currentTimeMillis() - 5000) {
+            channel.sendMessage("**Ducky** - Please wait 5 seconds before running this command again.");
+            logger.info("Cooldown: " + message.getAuthor() + " in " + channel.getId());
+            return;
+        }
+
+        cooldown.put(message.getAuthor().getId(), System.currentTimeMillis());
 
         String content = message.getContent()
                 .toLowerCase(Locale.ROOT)
@@ -37,7 +48,7 @@ public class WebSearch implements CommandExecutor {
 
         logger.info(message.getAuthor() + " : [ " + content + " ] in " + channel.getId());
 
-            try {
+         try {
                 Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH) // Change order
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
