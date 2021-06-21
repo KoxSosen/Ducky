@@ -31,7 +31,7 @@ public class WebSearch implements CommandExecutor {
     public void onCommand(TextChannel channel, Message message) {
 
         if (cooldown.getOrDefault(message.getAuthor().getId(), 0L) > System.currentTimeMillis() - 4000) {
-            channel.sendMessage("**Ducky** - Please wait 4 seconds before running this command again.");
+            channel.sendMessage("**Ducky** - Please wait `4` seconds before running this command again.");
             logger.info("Cooldown: " + message.getAuthor() + " in " + channel.getId());
             return;
         }

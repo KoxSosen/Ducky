@@ -6,7 +6,7 @@
 
     <groupId>com.github.koxsosen</groupId>
     <artifactId>Ducky</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
 
     <repositories>
         <repository>
