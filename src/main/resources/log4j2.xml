@@ -12,7 +12,7 @@
         </Console>
 
 
-        <RollingFile name="File Logger" fileName="log/ducky.log" filePattern="log/ducky-%d{yyyy-MM-dd}.log.gz">
+        <!--<RollingFile name="File Logger" fileName="log/ducky.log" filePattern="log/ducky-%d{yyyy-MM-dd}.log.gz">
            <PatternLayout>
                <Pattern><![CDATA[%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0} - %msg%n]]></Pattern>
            </PatternLayout>
@@ -20,13 +20,13 @@
                 <SizeBasedTriggeringPolicy size="5MB" />
             </Policies>
             <DefaultRolloverStrategy max="5"/>
-        </RollingFile>
+        </RollingFile>-->
 
    </Appenders>
    <Loggers>
        <Root level="INFO">
            <AppenderRef ref="Console Appender"/>
-           <AppenderRef ref="File Logger"/>
+           <!--<AppenderRef ref="File Logger"/>-->
       </Root>
   </Loggers>
 </Configuration>
