@@ -43,6 +43,4 @@ public class DogCommand implements CommandExecutor {
         channel.sendMessage(dogimageUrl);
         logger.info(message.getAuthor());
     }
-
-
 }

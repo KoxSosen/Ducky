@@ -44,6 +44,4 @@ public class DuckCommand implements CommandExecutor {
         channel.sendMessage(imageUrl.get());
         logger.info(message.getAuthor());
     }
-
-
 }

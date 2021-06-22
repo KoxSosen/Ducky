@@ -44,7 +44,5 @@ public class CatCommand implements CommandExecutor {
         channel.sendMessage(catimageUrl);
         logger.info(message.getAuthor());
     }
-
-
 }
 
