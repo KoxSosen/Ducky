@@ -58,8 +58,6 @@ public class WebSearch implements CommandExecutor {
                 .trim()
                 .replace(" ", "%20");
 
-        logger.info(message.getAuthor() + " : [ " + content + " ] in " + channel.getId());
-
         int maxcharacters = 500;
 
          try {
@@ -102,5 +100,6 @@ public class WebSearch implements CommandExecutor {
             } catch (IOException e) {
                 logger.warn(e);
             }
+        logger.info(message.getAuthor() + " : [ " + content + " ] in " + channel.getId());
         }
 }

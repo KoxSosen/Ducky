@@ -1,17 +1,14 @@
 /*
 Ducky - A web search utility with other features.
 Copyright (C) 2021 KoxSosen
-
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
 by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Affero General Public License for more details.
-
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
@@ -49,12 +46,13 @@ public class DebugCommand implements CommandExecutor {
         long uptime = bean.getUptime();
         long uptimemin = TimeUnit.MILLISECONDS.toMinutes(uptime);
         long uptimehr = TimeUnit.MILLISECONDS.toHours(uptime);
+        long uptimed = TimeUnit.MILLISECONDS.toDays(uptime);
 
         int dataSize = 1024*1024;
 
         new MessageBuilder()
-        .append("**Ducky** - Debug Information:")
-                .append("\n \n Uptime: `" + uptimehr + "` h or `" + uptimemin + "` min.")
+                .append("**Ducky** - Debug Information:")
+                .append("\n \n Uptime: `"+ uptimed + "` d `" + uptimehr + "` h `" + uptimemin + "` m in total.")
                 .append("\n Used Memory: `" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/dataSize + "` mb.")
                 .append("\n Servers: `" + api.getServers().size() + "`")
                 .send(channel);
