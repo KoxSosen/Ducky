@@ -44,7 +44,7 @@ public class HelpCommand implements CommandExecutor {
                 .append("\n - Ducky\\'s website: `" + Constants.PREFIX() + "site` " )
                 .append("\n - Invite the bot: `" + Constants.PREFIX() + "inv` " )
                 .append("\n - Help: `" + Constants.PREFIX() + "help`  " )
-                .append("\n \n Created by `287312849297080320` with love.")
+                .append("\n \n Created by `Simon.#4921 [287312849297080320]` with :heart:")
                 .send(channel);
         logger.info(message.getAuthor());
     }
