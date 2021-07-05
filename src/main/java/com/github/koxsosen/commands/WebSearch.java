@@ -25,15 +25,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
-import org.javacord.api.entity.message.MessageBuilder;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
 
 public class WebSearch implements CommandExecutor {
 
@@ -59,6 +61,10 @@ public class WebSearch implements CommandExecutor {
                 .replace(" ", "%20");
 
         int maxcharacters = 500;
+
+        Random obj = new Random(); // make obj random
+        int rand_num = obj.nextInt(0xffffff + 1); // If a number starts with 0x, it means the rest of the digits are interpreted as hex.
+        String colorCode = String.format("#%06x", rand_num); // format the hex code
 
          try {
                 Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH) // Change order
@@ -87,16 +93,17 @@ public class WebSearch implements CommandExecutor {
                         break;
                     }
 
-                    new MessageBuilder()
-                            .append("**Ducky** - `" + message.getAuthor().getName() + "`'s search:")
-                            .append("\n**Title** - " + title.text().replaceAll("@", "@-"))
-                            .append("\n**Description** - " + result.getElementsByClass("result__snippet").first().text()
+                    EmbedBuilder embed = new EmbedBuilder()
+                            .setTitle(title.text().replaceAll("@", "@-"))
+                            .setDescription(result.getElementsByClass("result__snippet").first().text()
                                     .replaceAll("@", "@-"))
-                            .append("\n**Link** -" + "<" + title.attr("href") + ">") // Don't show previews
-
-                    .send(channel);
+                            .setColor(Color.decode(colorCode))
+                            .addField(title.attr("href"),"_ _")
+                            .setFooter("Requested by: " + message.getAuthor().getDisplayName());
+                    channel.sendMessage(embed);
                     break;
                 }
+
             } catch (IOException e) {
                 logger.warn(e);
             }
