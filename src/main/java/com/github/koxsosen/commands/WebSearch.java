@@ -61,7 +61,7 @@ public class WebSearch implements CommandExecutor {
         int maxcharacters = 500;
 
          try {
-                Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH) // Change order
+                Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH)// Change order
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
 
@@ -92,7 +92,7 @@ public class WebSearch implements CommandExecutor {
                             .append("\n**Title** - " + title.text().replaceAll("@", "@-"))
                             .append("\n**Description** - " + result.getElementsByClass("result__snippet").first().text()
                                     .replaceAll("@", "@-"))
-                            .append("\n**Link** -" + "<" + title.attr("href") + ">") // Don't show previews
+                            .append("\n**Link** - " + "<" + title.attr("href") + ">") // Don't show previews
 
                     .send(channel);
                     break;
