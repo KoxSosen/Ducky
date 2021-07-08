@@ -34,6 +34,8 @@ public class DebugCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(DebugCommand.class);
 
+    private final long startTime = System.currentTimeMillis();
+
     RuntimeMXBean bean = ManagementFactory.getRuntimeMXBean();
 
     @Command(aliases = {Constants.PREFIX +"debug"}, async = true, description = "Debug command for ducky")
@@ -43,17 +45,21 @@ public class DebugCommand implements CommandExecutor {
             return;
         }
 
-        long uptime = bean.getUptime();
-        long uptimemin = TimeUnit.MILLISECONDS.toMinutes(uptime);
-        long uptimehr = TimeUnit.MILLISECONDS.toHours(uptime);
-        long uptimed = TimeUnit.MILLISECONDS.toDays(uptime);
+        long ms = System.currentTimeMillis() - startTime;
+        long days = TimeUnit.MILLISECONDS.toDays(ms);
+        ms -= TimeUnit.DAYS.toMillis(days);
+        long hours = TimeUnit.MILLISECONDS.toHours(ms);
+        ms -= TimeUnit.HOURS.toMillis(hours);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(ms);
+        ms -= TimeUnit.MINUTES.toMillis(minutes);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(ms);
 
-        int dataSize = 1024*1024;
+        int maxmem = 1024*1024;
 
         new MessageBuilder()
                 .append("**Ducky** - Debug Information:")
-                .append("\n \n Uptime: `"+ uptimed + "` d `" + uptimehr + "` h `" + uptimemin + "` m in total.")
-                .append("\n Used Memory: `" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/dataSize + "` mb.")
+                .append("\n \n Uptime: `"+ days + "` d `" + hours + "` h `" + minutes + "` m `" +   seconds  +  "` s" + ".")
+                .append("\n Used Memory: `" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/maxmem + "` mb.")
                 .append("\n Servers: `" + api.getServers().size() + "`")
                 .send(channel);
 

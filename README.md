@@ -17,7 +17,7 @@ Features:
 
 Check out these amazing people: 
 
-- [Geri](https://github.com/NotGeri) - Code support with the Duck, Cat, Dog command.
+- [Geri](https://github.com/NotGeri) - Code support with the Duck, Cat, Dog, WebSearch command.
 - [Charlie](https://github.com/TTRCharlie) - Testing with the bot.
 - [flori4nk](https://github.com/flori4nk) - General code support.
 

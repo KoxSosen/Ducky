@@ -81,31 +81,21 @@ public class WebSearch implements CommandExecutor {
 
                     Element result = results.get(i);
 
-                    logger.info(result);
-
                     Element title = result.getElementsByClass("links_main").first().getElementsByTag("a").first();
 
-                    logger.info(title);
-
                     Element desc = result.getElementsByClass("result__snippet").first();
-
-                    logger.info(desc);
-
+                    
                     if (!title.hasText()) {
                         channel.sendMessage("**Ducky** - No search results found!");
                         break;
                     }
 
-                    if (desc == null) {
-                        channel.sendMessage("**Ducky** - Unknown description!");
-                        break;
-                    }
+                    String descText = (desc == null) ? "Unable to read the description." : desc.text().replaceAll("@", "@-");
 
                     new MessageBuilder()
                             .append("**Ducky** - `" + message.getAuthor().getName() + "`'s search:")
                             .append("\n**Title** - " + title.text().replaceAll("@", "@-"))
-                            .append("\n**Description** - " + desc.text()
-                                    .replaceAll("@", "@-"))
+                            .append("\n**Description** - " +  descText)
                             .append("\n**Link** - " + "<" + title.attr("href") + ">") // Don't show previews
 
                     .send(channel);
