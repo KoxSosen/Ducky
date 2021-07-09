@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package com.github.koxsosen;
 
+import com.github.koxsosen.commands.PingCommand;
 import de.btobastian.sdcf4j.CommandHandler;
 import com.github.koxsosen.listeners.DuckyMSG;
 import com.github.koxsosen.debug.DebugCommand;
@@ -81,6 +82,7 @@ public class Main {
         handler.registerCommand(new DuckCommand());
         handler.registerCommand(new DogCommand());
         handler.registerCommand(new DebugCommand());
+        handler.registerCommand(new PingCommand());
 
         api.addMessageCreateListener(new DuckyMSG(handler));
 
