@@ -90,9 +90,9 @@ public class PingCommand implements CommandExecutor {
                         nodeone = jsonObject.getJSONObject("nodes");
                     }
 
-                    channel.sendMessage(response);
+                    PingCommandHelper.helper();
 
-                    channel.sendMessage(nodeone.toString());
+                    channel.sendMessage(PingCommandHelper.PONSE());
 
                 }
 
