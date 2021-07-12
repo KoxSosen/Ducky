@@ -34,6 +34,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 public class PingCommand implements CommandExecutor {
 
@@ -62,8 +64,6 @@ public class PingCommand implements CommandExecutor {
 
             String messageresp = con.getResponseMessage();
 
-            Object nodeone = "yes";
-
             switch (status) {
 
                 case 199 -> {
@@ -87,13 +87,17 @@ public class PingCommand implements CommandExecutor {
                     if (sb.length() > 0) {
                         JSONObject jsonObject = new JSONObject(sb.toString());
                         response = jsonObject.getString("request_id");
-                        nodeone = jsonObject.getJSONObject("nodes");
                     }
 
-                    PingCommandHelper.helper();
+                    CompletableFuture.runAsync(() -> {
 
-                    channel.sendMessage(PingCommandHelper.PONSE());
+                        PingCommandHelper.helper();
 
+                        channel.sendMessage(PingCommandHelper.PONSE());
+
+                        channel.sendMessage(PingCommandHelper.AWESOMETWO());
+
+                    }, CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS));
                 }
 
                 case 300 -> {
