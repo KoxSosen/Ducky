@@ -95,7 +95,7 @@ public class WebSearch implements CommandExecutor {
                     // ternary operator
 
                     if (descText.contains("y.js?ad_provider")) {
-                        channel.sendMessage("The answer contains an advertisement. Please re-run your search.");
+                        channel.sendMessage("**Ducky** - The answer contains an advertisement. Please re-run your search.");
                         break; // TODO Make this more convenient, and the check better.
                     }
 

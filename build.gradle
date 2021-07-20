@@ -37,7 +37,7 @@ dependencies {
 }
 
 group = 'com.github.koxsosen'
-version = '1.6'
+version = '1.6.1'
 description = 'Ducky'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
