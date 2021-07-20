@@ -56,7 +56,7 @@ public class WebSearch implements CommandExecutor {
                 .toLowerCase(Locale.ROOT)
                 .substring(Constants.PREFIX().length() + 1)
                 .trim()
-                .replace(" ", "%20");
+                .replaceAll(" ", "%20");
 
         int maxcharacters = 500;
 
@@ -70,7 +70,7 @@ public class WebSearch implements CommandExecutor {
                     return;
                 }
 
-                if (content.length() > maxcharacters) {
+             if (content.length() > maxcharacters) {
                     channel.sendMessage("**Ducky** - The character limit is `" + maxcharacters + "` characters.");
                     return;
                 }
@@ -90,7 +90,15 @@ public class WebSearch implements CommandExecutor {
                         break;
                     }
 
+
                     String descText = (desc == null) ? "Unable to read the description." : desc.text().replaceAll("@", "@-");
+                    // ternary operator
+
+                    if (descText.contains("y.js?ad_provider")) {
+                        channel.sendMessage("The answer contains an advertisement. Please re-run your search.");
+                        break; // TODO Make this more convenient, and the check better.
+                    }
+
 
                     new MessageBuilder()
                             .append("**Ducky** - `" + message.getAuthor().getName() + "`'s search:")
