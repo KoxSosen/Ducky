@@ -2,7 +2,7 @@
 <Configuration name="Ducky" status="INFO" strict="true">
     <Appenders>
 
-        <Console name="Console Appender">
+        <Console name="Console Appender" immediateFlush="false">
             <PatternLayout>
                 <Pattern><![CDATA[%d{HH:mm:ss.SSS} [%t] %-5level %logger{0} - %msg%n]]></Pattern>
             </PatternLayout>
@@ -12,7 +12,7 @@
         </Console>
 
 
-        <!--<RollingFile name="File Logger" fileName="log/ducky.log" filePattern="log/ducky-%d{yyyy-MM-dd}.log.gz">
+        <!--<RollingFile name="File Logger" fileName="log/ducky.log" filePattern="log/ducky-%d{yyyy-MM-dd}.log.gz" immediateFlush="false">
            <PatternLayout>
                <Pattern><![CDATA[%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0} - %msg%n]]></Pattern>
            </PatternLayout>

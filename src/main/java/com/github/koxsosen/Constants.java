@@ -20,7 +20,7 @@ package com.github.koxsosen;
 
 public final class Constants {
 
-    public static final String PREFIX = "."; // Prefix
+    public static final String PREFIX = ""; // Prefix
 
     public static final String TOKEN = ""; // This is the loc of the token
 
@@ -33,6 +33,8 @@ public final class Constants {
     public static final String SCRAPEURL = ""; // The url to scrape
 
     public static final String ISSAFESEARCH = ""; // &kp=1
+
+    public static final String ADVERTS = "";
 
     public static final String PROXYHOST = "localhost"; // Proxy ip: eg 172.0.0.1
 
@@ -74,6 +76,10 @@ public final class Constants {
 
     public static String ISSAFESERACH() { // could be an integer but meh
         return ISSAFESEARCH;
+    }
+
+    public static String ADVERTS() {
+        return ADVERTS;
     }
 
 }

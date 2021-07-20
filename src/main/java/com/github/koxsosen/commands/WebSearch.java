@@ -61,16 +61,16 @@ public class WebSearch implements CommandExecutor {
         int maxcharacters = 500;
 
          try {
-                Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH)// Change order
+                Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH + Constants.ADVERTS)
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
-
+                
                 if (content.isEmpty()) {
                     channel.sendMessage("**Ducky** - No search query specified! - Example: `" + Constants.PREFIX + "g car`");
                     return;
                 }
 
-             if (content.length() > maxcharacters) {
+                if (content.length() > maxcharacters) {
                     channel.sendMessage("**Ducky** - The character limit is `" + maxcharacters + "` characters.");
                     return;
                 }
@@ -89,17 +89,9 @@ public class WebSearch implements CommandExecutor {
                         channel.sendMessage("**Ducky** - No search results found!");
                         break;
                     }
-
-
+                    
                     String descText = (desc == null) ? "Unable to read the description." : desc.text().replaceAll("@", "@-");
-                    // ternary operator
-
-                    if (descText.contains("y.js?ad_provider")) {
-                        channel.sendMessage("**Ducky** - The answer contains an advertisement. Please re-run your search.");
-                        break; // TODO Make this more convenient, and the check better.
-                    }
-
-
+                    
                     new MessageBuilder()
                             .append("**Ducky** - `" + message.getAuthor().getName() + "`'s search:")
                             .append("\n**Title** - " + title.text().replaceAll("@", "@-"))
