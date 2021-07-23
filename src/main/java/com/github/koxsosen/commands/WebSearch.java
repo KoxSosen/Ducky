@@ -103,6 +103,8 @@ public class WebSearch implements CommandExecutor {
                 }
             } catch (IOException e) {
                 logger.warn(e);
+                channel.sendMessage("**Ducky** - The search parameters aren't valid."); // If the url isn't valid do not try to run rest of the code.
+                return;
             }
         logger.info(message.getAuthor() + " : [ " + content + " ] in " + channel.getId());
         }
