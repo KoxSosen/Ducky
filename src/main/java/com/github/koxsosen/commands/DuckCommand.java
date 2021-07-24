@@ -42,7 +42,7 @@ public class DuckCommand implements CommandExecutor {
     @Command(aliases = {Constants.PREFIX + "duck"}, async = true, description = "Send a random duck image")
     public void onCommand(TextChannel channel, Message message) {
 
-        AtomicReference <String> imageUrl = new AtomicReference <>("none");
+        AtomicReference <String> imageUrl = new AtomicReference <>("**Ducky** - No ducks where found!");
 
         try {
             HttpURLConnection con = (HttpURLConnection) new URL("https://random-d.uk/api/v2/random").openConnection();

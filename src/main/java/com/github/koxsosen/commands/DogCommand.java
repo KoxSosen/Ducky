@@ -41,7 +41,7 @@ public class DogCommand implements CommandExecutor {
     @Command(aliases = {Constants.PREFIX + "dog"}, async = true, description = "Get a random dog image from the web")
     public void onCommand(TextChannel channel, Message message) {
 
-        String dogimageUrl = "none";
+        String dogimageUrl = "**Ducky** - No dogs where found!";
 
         try {
             HttpURLConnection con = (HttpURLConnection) new URL("https://api.thedogapi.com/v1/images/search").openConnection();

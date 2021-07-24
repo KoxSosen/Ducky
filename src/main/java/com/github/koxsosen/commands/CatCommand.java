@@ -42,7 +42,7 @@ public class CatCommand implements CommandExecutor {
     @Command(aliases = {Constants.PREFIX + "cat"}, async = true, description = "Get a random cat image from the web")
     public void onCommand(TextChannel channel, Message message) {
 
-        String catimageUrl = "none";
+        String catimageUrl = "**Ducky** - No cats where found.";
 
         try {
             HttpURLConnection con = (HttpURLConnection) new URL("https://api.thecatapi.com/v1/images/search").openConnection();
