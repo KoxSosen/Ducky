@@ -39,10 +39,10 @@ public class CatCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(CatCommand.class);
 
-    @Command(aliases = {Constants.PREFIX + "cat"}, async = true, description = "Get a random cat image from the web")
+    @Command(aliases = {Constants.PREFIX + "cat", Constants.PREFIX + "\uD83D\uDC31"}, async = true, description = "Get a random cat image from the web")
     public void onCommand(TextChannel channel, Message message) {
 
-        String catimageUrl = "**Ducky** - No cats where found.";
+        String catimageUrl = "**Ducky** - No cats were found.";
 
         try {
             HttpURLConnection con = (HttpURLConnection) new URL("https://api.thecatapi.com/v1/images/search").openConnection();

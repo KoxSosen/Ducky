@@ -39,10 +39,10 @@ public class DuckCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(DuckCommand.class);
 
-    @Command(aliases = {Constants.PREFIX + "duck"}, async = true, description = "Send a random duck image")
+    @Command(aliases = {Constants.PREFIX + "duck", Constants.PREFIX + "\uD83E\uDD86"}, async = true, description = "Get a random duck image from the web")
     public void onCommand(TextChannel channel, Message message) {
 
-        AtomicReference <String> imageUrl = new AtomicReference <>("**Ducky** - No ducks where found!");
+        AtomicReference <String> imageUrl = new AtomicReference <>("**Ducky** - No ducks were found!");
 
         try {
             HttpURLConnection con = (HttpURLConnection) new URL("https://random-d.uk/api/v2/random").openConnection();

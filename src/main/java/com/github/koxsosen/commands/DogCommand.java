@@ -38,10 +38,10 @@ public class DogCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(DogCommand.class);
 
-    @Command(aliases = {Constants.PREFIX + "dog"}, async = true, description = "Get a random dog image from the web")
+    @Command(aliases = {Constants.PREFIX + "dog", Constants.PREFIX + "\uD83D\uDC36"}, async = true, description = "Get a random dog image from the web")
     public void onCommand(TextChannel channel, Message message) {
 
-        String dogimageUrl = "**Ducky** - No dogs where found!";
+        String dogimageUrl = "**Ducky** - No dogs were found!";
 
         try {
             HttpURLConnection con = (HttpURLConnection) new URL("https://api.thedogapi.com/v1/images/search").openConnection();

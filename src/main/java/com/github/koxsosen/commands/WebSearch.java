@@ -34,6 +34,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 public class WebSearch implements CommandExecutor {
 
@@ -75,17 +76,17 @@ public class WebSearch implements CommandExecutor {
                     return;
                 }
 
-                Elements results = doc.getElementById("links").getElementsByClass("results_links");
+                Elements results = Objects.requireNonNull(doc.getElementById("links")).getElementsByClass("results_links");
 
                 for (int i = 0, resultsSize = results.size(); i < resultsSize; i++) {
 
                     Element result = results.get(i);
 
-                    Element title = result.getElementsByClass("links_main").first().getElementsByTag("a").first();
+                    Element title = Objects.requireNonNull(result.getElementsByClass("links_main").first()).getElementsByTag("a").first();
 
                     Element desc = result.getElementsByClass("result__snippet").first();
                     
-                    if (!title.hasText()) {
+                    if (!Objects.requireNonNull(title).hasText()) {
                         channel.sendMessage("**Ducky** - No search results found!");
                         break;
                     }

@@ -31,21 +31,25 @@ public class HelpCommand implements CommandExecutor {
 
     private static final Logger logger = LogManager.getLogger(HelpCommand.class);
 
+    private static final String prefix = Constants.PREFIX();
+
     @Command(aliases = {Constants.PREFIX + "help", Constants.PREFIX + "halp"}, async = true, description = "Help command for ducky")
     public void onCommand(TextChannel channel, Message message) {
 
         new MessageBuilder()
                 .append("**Ducky** is mostly a web search utility for discord, but has other features too:")
-                .append("\n \n - Web Search: `" + Constants.PREFIX() + "g` ")
-                .append("\n - Random Cat Image: `" + Constants.PREFIX() + "cat` " )
-                .append("\n - Random Duck Image: `" + Constants.PREFIX() + "duck`" )
-                .append("\n - Random Dog Image: `" + Constants.PREFIX() + "dog`")
-                .append("\n - Self Hosted Paste Server: `" + Constants.PREFIX() + "paste` " )
-                .append("\n - Ducky\\'s website: `" + Constants.PREFIX() + "site` " )
-                .append("\n - Invite the bot: `" + Constants.PREFIX() + "inv` " )
-                .append("\n - Help: `" + Constants.PREFIX() + "help`  " )
+                .append("\n \n - Web Search: `" + prefix + "g` ")
+                .append("\n - Random Cat Image: `" + prefix + "cat` " )
+                .append("\n - Random Duck Image: `" + prefix + "duck`" )
+                .append("\n - Random Dog Image: `" + prefix + "dog`")
+                .append("\n - Self Hosted Paste Server: `" + prefix + "paste` " )
+                .append("\n - Ducky\\'s website: `" + prefix + "site` " )
+                .append("\n - Invite the bot: `" + prefix + "inv` " )
+                .append("\n - Help: `" + prefix + "help`  " )
                 .append("\n \n Created by `Simon.#4921 [287312849297080320]` with :heart:")
+
                 .send(channel);
+
         logger.info(message.getAuthor());
     }
 }
