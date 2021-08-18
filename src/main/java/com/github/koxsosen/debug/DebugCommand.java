@@ -25,8 +25,6 @@ import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.MessageBuilder;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
 import java.util.concurrent.TimeUnit;
 
 
@@ -35,8 +33,6 @@ public class DebugCommand implements CommandExecutor {
     private static final Logger logger = LogManager.getLogger(DebugCommand.class);
 
     private final long startTime = System.currentTimeMillis();
-
-    RuntimeMXBean bean = ManagementFactory.getRuntimeMXBean();
 
     @Command(aliases = {Constants.PREFIX +"debug"}, async = true, description = "Debug command for ducky")
     public void onCommand(TextChannel channel, Message message, DiscordApi api) {
