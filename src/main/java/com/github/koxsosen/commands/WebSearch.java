@@ -63,9 +63,6 @@ public class WebSearch implements CommandExecutor {
         String content = message.getContent()
                 .substring(Constants.PREFIX().length() + 1).trim();
 
-        logger.info(content);
-
-
         if (content.isEmpty()) {
             channel.sendMessage("**Ducky** - No search query specified! - Example: `" + Constants.PREFIX + "g car`");
             return;
@@ -81,8 +78,6 @@ public class WebSearch implements CommandExecutor {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-        logger.info(formatted);
 
         search = new StringBuilder()
                 .append(Constants.SCRAPEURL())
@@ -129,5 +124,5 @@ public class WebSearch implements CommandExecutor {
                 return; // If the url isn't valid do not try to run the rest of the code.
             }
         logger.info(message.getAuthor().getId() + " : (" + content + ") in " + channel.getId());
-        }
+    }
 }
