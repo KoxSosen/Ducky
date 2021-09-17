@@ -32,8 +32,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Objects;
 
 public class WebSearch implements CommandExecutor {
@@ -41,6 +42,12 @@ public class WebSearch implements CommandExecutor {
     private static final Logger logger = LogManager.getLogger(WebSearch.class);
 
     private final HashMap<Long, Long> cooldown = new HashMap <>();
+
+    int maxcharacters = 500;
+
+    String formatted = null;
+
+    String search = null;
 
     @Command(aliases = {Constants.PREFIX + "g"}, async = true, description = "Runs a web search on " + Constants.SCRAPEURL)
     public void onCommand(TextChannel channel, Message message) {
@@ -54,27 +61,40 @@ public class WebSearch implements CommandExecutor {
         cooldown.put(message.getAuthor().getId(), System.currentTimeMillis());
 
         String content = message.getContent()
-                .toLowerCase(Locale.ROOT)
-                .substring(Constants.PREFIX().length() + 1)
-                .trim()
-                .replaceAll(" ", "%20");
+                .substring(Constants.PREFIX().length() + 1).trim();
 
-        int maxcharacters = 500;
+        logger.info(content);
 
-         try {
-                Document doc = Jsoup.connect(Constants.SCRAPEURL + content + Constants.ISSAFESEARCH + Constants.ADVERTS)
+
+        if (content.isEmpty()) {
+            channel.sendMessage("**Ducky** - No search query specified! - Example: `" + Constants.PREFIX + "g car`");
+            return;
+        }
+
+        if (content.length() > maxcharacters) {
+            channel.sendMessage("**Ducky** - The character limit is `" + maxcharacters + "` characters.");
+            return;
+        }
+
+        try {
+            formatted = URLEncoder.encode(content, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        logger.info(formatted);
+
+        search = new StringBuilder()
+                .append(Constants.SCRAPEURL())
+                .append(formatted)
+                .append(Constants.ISSAFESERACH())
+                .append(Constants.ADVERTS())
+                .toString();
+
+        try {
+                Document doc = Jsoup.connect(search)
                         //.proxy(Constants.PROXYHOST(), Constants.PROXYPORT)
                         .get();
-                
-                if (content.isEmpty()) {
-                    channel.sendMessage("**Ducky** - No search query specified! - Example: `" + Constants.PREFIX + "g car`");
-                    return;
-                }
-
-                if (content.length() > maxcharacters) {
-                    channel.sendMessage("**Ducky** - The character limit is `" + maxcharacters + "` characters.");
-                    return;
-                }
 
                 Elements results = Objects.requireNonNull(doc.getElementById("links")).getElementsByClass("results_links");
 
@@ -108,6 +128,6 @@ public class WebSearch implements CommandExecutor {
                 channel.sendMessage("**Ducky** - The search parameters aren't valid.");
                 return; // If the url isn't valid do not try to run the rest of the code.
             }
-        logger.info(message.getAuthor() + " : [ " + content + " ] in " + channel.getId());
+        logger.info(message.getAuthor().getId() + " : (" + content + ") in " + channel.getId());
         }
 }
