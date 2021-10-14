@@ -1,5 +1,5 @@
 [package]
-name = "Ducky"
+name = "ducky"
 version = "0.1.0"
 edition = "2018"
 

@@ -32,7 +32,7 @@ struct Handler;
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, _: Context, ready: Ready) {
-        info!("Connected as {}", ready.user.name);
+        info!("Connected as: {}", ready.user.name);
     }
 
     async fn resume(&self, _: Context, _: ResumedEvent) {
@@ -46,14 +46,11 @@ struct General;
 
 #[tokio::main]
 async fn main() {
-    // This will load the environment variables located at `./.env`, relative to
-    // the CWD. See `./.env.example` for an example on how to structure this.
-    dotenv::dotenv().expect("Failed to load .env file");
+    // This will load the environment variables located at `./.env`.
+    dotenv::dotenv().expect("Failed to load env file.");
 
     // Initialize the logger to use environment variables.
-    //
-    // In this case, a good default is setting the environment variable
-    // `RUST_LOG` to `debug`.
+    // .env - Logger stuff
     tracing_subscriber::fmt::init();
 
     // Expect a token in the env
