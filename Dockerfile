@@ -4,11 +4,18 @@ FROM debian:buster-slim
 # Sets the email.
 LABEL maintainer="67807644+KoxSosen@users.noreply.github.com"
 
-# Create an arg for the version.
+# Create an arg for the version. --build-arg
 ARG version
+
+# Java version.
+# For Java 11: javaversion=adoptopenjdk-11-hotspot
+# For Java 16: javaversion=adoptopenjdk-16-hotspot
+
+ARG javaversion
 
 # Set version
 ENV BUILDVER=$version
+ENV JAVAVER=$javaversion
 
 # Install Java 11 (optionally will 16), and nano.
 RUN apt-get update && \
@@ -20,7 +27,7 @@ RUN apt-get update && \
     mv adoptopenjdk-archive-keyring.gpg /usr/share/keyrings && chown root:root /usr/share/keyrings/adoptopenjdk-archive-keyring.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/adoptopenjdk-archive-keyring.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb buster main" | tee /etc/apt/sources.list.d/adoptopenjdk.list && \
     apt-get update && \
-    apt-get install adoptopenjdk-11-hotspot -y && \
+    apt-get install $JAVAVER -y && \
     apt-get install nano -y && \
     apt-get autoremove --purge -y && \
     rm -rv /var/lib/apt/lists/*
