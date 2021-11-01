@@ -12,7 +12,7 @@ ARG version
 ENV BUILDVER=$version
 
 # Add the user we're going to run as.
-RUN adduser --no-log-init --shell /bin/false --no-create-home ducky-runner
+RUN adduser -D -H ducky-runner
 
 # Add Ducky-<release>.tar from the host working Directory to /opt/ in the container.
 COPY Ducky-$BUILDVER.tar /opt/
