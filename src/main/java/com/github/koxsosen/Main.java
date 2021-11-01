@@ -65,7 +65,7 @@ public class Main {
                 .login().join();
                 // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
                 api.setReconnectDelay(attempt -> attempt * 2);
-                // Only cache 10 messages per channel & remove ones older than 30 min.
+                // Only cache 10 messages per channel & remove ones older than 15 min.
                 api.setMessageCacheSize(10, 30*30);
         // Set the bots status
         api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
