@@ -1,5 +1,5 @@
 # Using Debian 10.
-FROM debian:buster-slim
+FROM openjdk:18-jdk-alpine3.13
 
 # Sets the email.
 LABEL maintainer="67807644+KoxSosen@users.noreply.github.com"
@@ -8,32 +8,11 @@ LABEL maintainer="67807644+KoxSosen@users.noreply.github.com"
 # At the time of writing this: version=1.6.4
 ARG version
 
-# Java version.
-# For Java 11: javaversion=adoptopenjdk-11-hotspot
-# For Java 16: javaversion=adoptopenjdk-16-hotspot
-ARG javaversion
-
 # Set version
 ENV BUILDVER=$version
-ENV JAVAVER=$javaversion
-
-# Install Java, and nano.
-RUN apt-get update && \
-    apt-get install -y wget apt-transport-https gnupg && \
-    wget https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public && \
-    gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --import public && \
-    gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --export --output adoptopenjdk-archive-keyring.gpg && \
-    rm adoptopenjdk-keyring.gpg && \
-    mv adoptopenjdk-archive-keyring.gpg /usr/share/keyrings && chown root:root /usr/share/keyrings/adoptopenjdk-archive-keyring.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/adoptopenjdk-archive-keyring.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb buster main" | tee /etc/apt/sources.list.d/adoptopenjdk.list && \
-    apt-get update && \
-    apt-get install $JAVAVER -y && \
-    apt-get install nano -y && \
-    apt-get autoremove --purge -y && \
-    rm -rv /var/lib/apt/lists/*
 
 # Add the user we're going to run as.
-RUN useradd --no-log-init --shell /bin/false --no-create-home ducky-runner
+RUN adduser --no-log-init --shell /bin/false --no-create-home ducky-runner
 
 # Add Ducky-<release>.tar from the host working Directory to /opt/ in the container.
 COPY Ducky-$BUILDVER.tar /opt/
