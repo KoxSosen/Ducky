@@ -1,4 +1,4 @@
-# Using Debian 10.
+# Using Alpine, and Java 18
 FROM openjdk:18-jdk-alpine3.13
 
 # Sets the email.
@@ -28,5 +28,5 @@ RUN chown -R ducky-runner:ducky-runner /opt/Ducky-$BUILDVER/
 USER ducky-runner
 WORKDIR /opt/Ducky-$BUILDVER/bin/
 
-# Enter the app. Not using ENTRYPOINT, as we don't use any startup flags rn...Or do we? :eyes:
+# Enter the app.
 CMD ["./Ducky"]
