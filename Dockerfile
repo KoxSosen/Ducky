@@ -1,5 +1,5 @@
 # Using Debian 10.
-FROM debian:buster
+FROM debian:buster-slim
 
 # Sets the email.
 LABEL maintainer="67807644+KoxSosen@users.noreply.github.com"
