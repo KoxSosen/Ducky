@@ -5,7 +5,7 @@ FROM debian:buster-slim
 LABEL maintainer="67807644+KoxSosen@users.noreply.github.com"
 
 # Set version
-ENV VERSION 1.6.3
+ENV VERSION 1.6.4
 
 # Install Java 11 (optionally will 16), and nano.
 RUN apt-get update && \
