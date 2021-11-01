@@ -5,19 +5,19 @@ FROM debian:buster-slim
 LABEL maintainer="67807644+KoxSosen@users.noreply.github.com"
 
 # Create an arg for the version. --build-arg
+# At the time of writing this: version=1.6.4
 ARG version
 
 # Java version.
 # For Java 11: javaversion=adoptopenjdk-11-hotspot
 # For Java 16: javaversion=adoptopenjdk-16-hotspot
-
 ARG javaversion
 
 # Set version
 ENV BUILDVER=$version
 ENV JAVAVER=$javaversion
 
-# Install Java 11 (optionally will 16), and nano.
+# Install Java, and nano.
 RUN apt-get update && \
     apt-get install -y wget apt-transport-https gnupg && \
     wget https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public && \
