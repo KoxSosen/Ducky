@@ -14,7 +14,7 @@ public class DuckyMSG implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageAuthor().isBotUser()) {
+        if (event.getMessageAuthor().isBotUser() | event.getMessageAuthor().isWebhook()) {
             return;
         }
     }
