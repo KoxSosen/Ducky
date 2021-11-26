@@ -1,5 +1,5 @@
 # Using Alpine, and Java 18
-FROM openjdk:18-jdk-alpine3.13
+FROM openjdk:18-jdk-alpine3.14
 
 # Sets the email.
 LABEL maintainer="67807644+KoxSosen@users.noreply.github.com"
@@ -24,7 +24,8 @@ RUN cd /opt/ && \
 # Set ownership.
 RUN chown -R ducky-runner:ducky-runner /opt/Ducky-$BUILDVER/
 
-# Change user, set the working dir.
+# Make the image single layer
+FROM scratch
 USER ducky-runner
 WORKDIR /opt/Ducky-$BUILDVER/bin/
 
