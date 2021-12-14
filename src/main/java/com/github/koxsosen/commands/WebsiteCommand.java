@@ -38,8 +38,8 @@ public class WebsiteCommand implements CommandExecutor {
         new MessageBuilder()
                 .append("Ducky has it's own website!")
                 .append("\nLink: https://ducky.hahota.net")
-                .append("\n\n" + "The bot's source code can be found here:")
-                .append("\n" + "<https://github.com/KoxSosen/Ducky>")
+               // .append("\n\n" + "The bot's source code can be found here:") Remove source code mention.
+               // .append("\n" + "<https://github.com/KoxSosen/Ducky>")
                 .send(channel);
 
         logger.info(message.getAuthor());
