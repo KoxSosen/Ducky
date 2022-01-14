@@ -32,8 +32,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -73,11 +73,7 @@ public class WebSearch implements CommandExecutor {
             return;
         }
 
-        try {
-            formatted = URLEncoder.encode(content, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        formatted = URLEncoder.encode(content, StandardCharsets.UTF_8);
 
         search = new StringBuilder()
                 .append(Constants.SCRAPEURL())

@@ -32,8 +32,8 @@ dependencies {
     implementation 'org.javacord:javacord:3.3.3-SNAPSHOT'
     implementation 'de.btobastian.sdcf4j:sdcf4j-core:1.0.10'
     implementation 'de.btobastian.sdcf4j:sdcf4j-javacord:1.0.10'
-    implementation 'org.apache.logging.log4j:log4j-core:2.17.0'
-    implementation 'com.lmax:disruptor:3.4.4'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    implementation 'com.lmax:disruptor:4.0.0.RC1'
     implementation 'org.jsoup:jsoup:1.14.3'
     implementation 'org.json:json:20211205'
 }
@@ -41,7 +41,7 @@ dependencies {
 group = 'com.github.koxsosen'
 version = '1.6.5'
 description = 'Ducky'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications {
