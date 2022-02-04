@@ -33,7 +33,7 @@ dependencies {
     implementation 'de.btobastian.sdcf4j:sdcf4j-core:1.0.10'
     implementation 'de.btobastian.sdcf4j:sdcf4j-javacord:1.0.10'
     implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
-    implementation 'com.lmax:disruptor:4.0.0.RC1'
+    implementation 'com.lmax:disruptor:3.4.4'
     implementation 'org.jsoup:jsoup:1.14.3'
     implementation 'org.json:json:20211205'
 }
