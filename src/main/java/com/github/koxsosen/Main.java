@@ -1,6 +1,6 @@
 /*
 Ducky - A web search utility with other features.
-Copyright (C) 2021 KoxSosen
+Copyright (C) 2022 KoxSosen
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -48,7 +48,7 @@ public class Main {
 
         FallbackLoggerConfiguration.setDebug(false);
 
-        DiscordApi api = new DiscordApiBuilder()
+        new DiscordApiBuilder()
                 .setToken(Constants.TOKEN)
                 .setWaitForServersOnStartup(false)
                 .setAllNonPrivilegedIntentsExcept(
@@ -61,12 +61,26 @@ public class Main {
                         Intent.DIRECT_MESSAGE_REACTIONS,
                         Intent.DIRECT_MESSAGE_TYPING,
                         Intent.GUILD_MESSAGE_TYPING,
-                        Intent.GUILD_VOICE_STATES) // Disable unneeded Intents.
-                .login().join();
-                // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
-                api.setReconnectDelay(attempt -> attempt * 2);
-                // Only cache 10 messages per channel & remove ones older than 15 min.
-                api.setMessageCacheSize(10, 30*30);
+                        Intent.GUILD_VOICE_STATES)
+                // Disable unneeded Intents.
+                .setRecommendedTotalShards().join()
+                .loginAllShards()
+                .forEach(shardFuture -> shardFuture
+                        .thenAccept(Main::onShardLogin)
+                        .exceptionally(e -> {
+                                    logger.error(e.getCause());
+                                    return null; // This is very nasty, but hey....
+                                }
+                    ));
+                // "ask" discord for the recommended amount of shards, and then do stuff
+        }
+
+        private static void onShardLogin(DiscordApi api) {
+
+        // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
+        api.setReconnectDelay(attempt -> attempt * 2);
+        // Only cache 10 messages per channel & remove ones older than 15 min.
+        api.setMessageCacheSize(10, 30*30);
         // Set the bots status
         api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
 
@@ -87,6 +101,8 @@ public class Main {
         logger.info("The bots prefix is " + Constants.PREFIX());
         logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
         logger.info("Logged in as " + api.getYourself() + ".");
+        logger.info("Running with " + api.getTotalShards() + " shards, I'm " + api.getCurrentShard() + ".");
+
         }
 
 }
