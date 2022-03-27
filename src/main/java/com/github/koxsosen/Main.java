@@ -1,6 +1,6 @@
 /*
 Ducky - A web search utility with other features.
-Copyright (C) 2021 KoxSosen
+Copyright (C) 2022 KoxSosen
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -51,7 +51,6 @@ public class Main {
         new DiscordApiBuilder()
                 .setToken(Constants.TOKEN)
                 .setWaitForServersOnStartup(false)
-                // Disable unneeded Intents.
                 .setAllNonPrivilegedIntentsExcept(
                         Intent.GUILD_EMOJIS,
                         Intent.GUILD_BANS,
@@ -63,7 +62,7 @@ public class Main {
                         Intent.DIRECT_MESSAGE_TYPING,
                         Intent.GUILD_MESSAGE_TYPING,
                         Intent.GUILD_VOICE_STATES)
-                // "ask" discord for the recommended amount of shards, and then
+                // Disable unneeded Intents.
                 .setRecommendedTotalShards().join()
                 .loginAllShards()
                 .forEach(shardFuture -> shardFuture
@@ -72,10 +71,11 @@ public class Main {
                                     logger.error(e.getCause());
                                     return null; // This is very nasty, but hey....
                                 }
-                ));
-    }
+                    ));
+                // "ask" discord for the recommended amount of shards, and then do stuff
+        }
 
-    private static void onShardLogin(DiscordApi api) {
+        private static void onShardLogin(DiscordApi api) {
 
         // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
         api.setReconnectDelay(attempt -> attempt * 2);
@@ -102,6 +102,7 @@ public class Main {
         logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
         logger.info("Logged in as " + api.getYourself() + ".");
         logger.info("Running with " + api.getTotalShards() + " shards, I'm " + api.getCurrentShard() + ".");
+
         }
 
 }

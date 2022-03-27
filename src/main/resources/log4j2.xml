@@ -11,7 +11,6 @@
             </Filters>
         </Console>
 
-
         <!--<RollingFile name="File Logger" fileName="log/ducky.log" filePattern="log/ducky-%d{yyyy-MM-dd}.log.gz" immediateFlush="false">
            <PatternLayout>
                <Pattern><![CDATA[%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0} - %msg%n]]></Pattern>

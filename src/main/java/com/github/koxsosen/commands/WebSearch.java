@@ -1,6 +1,6 @@
 /*
 Ducky - A web search utility with other features.
-Copyright (C) 2021 KoxSosen
+Copyright (C) 2022 KoxSosen
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
