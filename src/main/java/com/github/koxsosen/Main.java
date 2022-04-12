@@ -19,13 +19,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package com.github.koxsosen;
 
 import com.github.koxsosen.commands.Cat;
-import com.github.koxsosen.config.ConfigHandler;
-import com.github.koxsosen.config.ConfigValues;
+import com.github.koxsosen.config.ConfigManager;
+import com.github.koxsosen.config.Config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kitteh.irc.client.library.Client;
 
-import java.io.ObjectInputFilter;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -35,18 +35,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Path configFolder = Paths.get("./config");
-        String filename = "config";
-        ConfigHandler<ObjectInputFilter.Config> configManager = ConfigHandler.create(configFolder, filename, ConfigValues.class);
+        // This doesn't work for some reason.
+        Path configFolder = Paths.get(".");
+        logger.info(configFolder);
+        String filename = "config.yml";
+        ConfigManager <Config> configManager = ConfigManager.create(configFolder, filename, Config.class);
 
-        ObjectInputFilter.Config config = configManager.getConfigData();
 
-        logger.info(config);
+        Config configValues = configManager.getConfigData();
 
         Client client = Client.builder()
-                .nick(Constants.NICK)
+                .nick(configValues.nick())
                 .server()
-                .host(Constants.HOST)
+                .host(configValues.host())
                 .then().buildAndConnect();
 
 

@@ -16,22 +16,22 @@ import java.io.UncheckedIOException;
 import java.nio.file.Path;
 
 // https://github.com/A248/DazzleConf/wiki/Configuration-Manager
-public class ConfigHandler<C> {
+public final class ConfigManager<C> {
 
     private final ConfigurationHelper <C> configHelper;
     private volatile C configData;
-    private static final Logger logger = LogManager.getLogger(ConfigHandler.class);
+    private static final Logger logger = LogManager.getLogger(ConfigManager.class);
 
-    private ConfigHandler(ConfigurationHelper configHelper) {
+    private ConfigManager(ConfigurationHelper configHelper) {
         this.configHelper = configHelper;
     }
 
-    public static <C> ConfigHandler create(Path configFolder, String filename, Class<C> configClass) {
+    public static <C> ConfigManager create(Path configFolder, String filename, Class<C> configClass) {
 
         SnakeYamlOptions yamlOptions = new SnakeYamlOptions.Builder().commentMode(CommentMode.alternativeWriter()).build();
         ConfigurationFactory <C> configFactory = SnakeYamlConfigurationFactory.create(configClass, ConfigurationOptions.defaults(), yamlOptions);
 
-        return new ConfigHandler(new ConfigurationHelper<>(configFolder, filename, configFactory));
+        return new ConfigManager(new ConfigurationHelper<>(configFolder, filename, configFactory));
 
     }
 
