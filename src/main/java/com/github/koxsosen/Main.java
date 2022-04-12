@@ -19,11 +19,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package com.github.koxsosen;
 
 import com.github.koxsosen.commands.Cat;
+import com.github.koxsosen.commands.Dog;
+import com.github.koxsosen.commands.Duck;
 import com.github.koxsosen.config.ConfigManager;
 import com.github.koxsosen.config.Config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kitteh.irc.client.library.Client;
+import org.kitteh.irc.client.library.feature.auth.SaslPlain;
 
 import java.nio.file.Paths;
 
@@ -34,21 +37,26 @@ public class Main {
     public static void main(String[] args) {
 
         ConfigManager <Config> configManager = ConfigManager.create(Paths.get("."), "config.yml", Config.class);
-        configManager.reloadConfig(); // Oh yeah we reload before we load data.
+        configManager.reloadConfig(); // Oh, yeah we reload before we load data.
 
-        Config configValues = configManager.getConfigData();
+        Config config = configManager.getConfigData();
 
         Client client = Client.builder()
-                .nick(configValues.nick())
+                .nick(config.nick())
                 .server()
-                .host(configValues.host())
-                .then().buildAndConnect();
+                .host(config.host())
+                .then().build();
 
+        // SASL, this should not be used without TLS.
+        client.getAuthManager()
+                .addProtocol(new SaslPlain(client, config.nick(), config.password()));
 
         // Manages listeners.
         client.getEventManager().registerEventListener(new Cat());
+        client.getEventManager().registerEventListener(new Dog());
+        client.getEventManager().registerEventListener(new Duck());
 
-        client.addChannel("#testing");
+        client.addChannel(config.channel());
 
         logger.info("The bots prefix is " + Constants.PREFIX());
 
