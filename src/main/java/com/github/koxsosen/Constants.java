@@ -22,22 +22,10 @@ public final class Constants {
 
     public static final String PREFIX = "."; // Prefix used for commands.
 
-    public static final String NICK = "Ducky"; // IRC Nick
-
-    public static final String HOST = "irc.hahota.net"; // IRC Server host
-
     public Constants() { }
 
     public static String PREFIX() {
         return PREFIX;
-    }
-
-    public static String NICK() {
-        return NICK;
-    }
-
-    public static String HOST() {
-        return HOST;
     }
 
 

@@ -25,8 +25,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kitteh.irc.client.library.Client;
 
-import java.io.File;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Main {
@@ -35,12 +33,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // This doesn't work for some reason.
-        Path configFolder = Paths.get(".");
-        logger.info(configFolder);
-        String filename = "config.yml";
-        ConfigManager <Config> configManager = ConfigManager.create(configFolder, filename, Config.class);
-
+        ConfigManager <Config> configManager = ConfigManager.create(Paths.get("."), "config.yml", Config.class);
+        configManager.reloadConfig(); // Oh yeah we reload before we load data.
 
         Config configValues = configManager.getConfigData();
 
