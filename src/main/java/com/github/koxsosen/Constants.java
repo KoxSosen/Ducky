@@ -1,6 +1,6 @@
 /*
 Ducky - A web search utility with other features.
-Copyright (C) 2021 KoxSosen
+Copyright (C) 2022 KoxSosen
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -20,66 +20,25 @@ package com.github.koxsosen;
 
 public final class Constants {
 
-    public static final String PREFIX = ""; // Prefix
+    public static final String PREFIX = "."; // Prefix used for commands.
 
-    public static final String TOKEN = ""; // This is the loc of the token
+    public static final String NICK = "Ducky"; // IRC Nick
 
-    public static final String STATUS = ""; // Status
-
-    public static final String STATUSTYPE = ""; // WATCHING / PLAYING
-
-    public static final String PASTEURL = ""; // Paste url
-
-    public static final String SCRAPEURL = ""; // The url to scrape
-
-    public static final String ISSAFESEARCH = ""; // &kp=1
-
-    public static final String ADVERTS = "";
-
-    public static final String PROXYHOST = "localhost"; // Proxy ip: eg 172.0.0.1
-
-    public static final Integer PROXYPORT = 8080; // Proxy port. It's an integer, must be a value. eg 8080 or 8888
+    public static final String HOST = "irc.hahota.net"; // IRC Server host
 
     public Constants() { }
-
-    public static String TOKEN() {
-        return TOKEN;
-    }
-
-    public static String STATUS() {
-        return STATUS;
-    }
 
     public static String PREFIX() {
         return PREFIX;
     }
 
-    public static String STATUSTYPE() {
-        return STATUSTYPE;
+    public static String NICK() {
+        return NICK;
     }
 
-    public static String PASTEURL() {
-        return PASTEURL;
+    public static String HOST() {
+        return HOST;
     }
 
-    public static String SCRAPEURL() {
-        return SCRAPEURL;
-    }
-
-    public static String PROXYHOST() {
-        return PROXYHOST;
-    }
-
-    public static Integer PROXYPORT() {
-        return PROXYPORT;
-    }
-
-    public static String ISSAFESERACH() { // could be an integer but meh
-        return ISSAFESEARCH;
-    }
-
-    public static String ADVERTS() {
-        return ADVERTS;
-    }
 
 }

@@ -18,27 +18,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package com.github.koxsosen;
 
-import de.btobastian.sdcf4j.CommandHandler;
-import com.github.koxsosen.listeners.DuckyMSG;
-import com.github.koxsosen.debug.DebugCommand;
-import com.github.koxsosen.commands.WebSearch;
-import com.github.koxsosen.commands.CatCommand;
-import com.github.koxsosen.commands.DogCommand;
-import com.github.koxsosen.commands.DuckCommand;
-import com.github.koxsosen.commands.HelpCommand;
-import com.github.koxsosen.commands.InviteCommand;
-import com.github.koxsosen.commands.PasteCommand;
-import com.github.koxsosen.commands.WebsiteCommand;
-import de.btobastian.sdcf4j.handler.JavacordHandler;
-import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.DiscordApi;
-
+import com.github.koxsosen.commands.Cat;
+import com.github.koxsosen.config.ConfigHandler;
+import com.github.koxsosen.config.ConfigValues;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.kitteh.irc.client.library.Client;
 
-import org.javacord.api.entity.activity.ActivityType;
-import org.javacord.api.entity.intent.Intent;
-import org.javacord.api.util.logging.FallbackLoggerConfiguration;
+import java.io.ObjectInputFilter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
 
@@ -46,47 +35,27 @@ public class Main {
 
     public static void main(String[] args) {
 
-        FallbackLoggerConfiguration.setDebug(false);
+        Path configFolder = Paths.get("./config");
+        String filename = "config";
+        ConfigHandler<ObjectInputFilter.Config> configManager = ConfigHandler.create(configFolder, filename, ConfigValues.class);
 
-        DiscordApi api = new DiscordApiBuilder()
-                .setToken(Constants.TOKEN)
-                .setWaitForServersOnStartup(false)
-                .setAllNonPrivilegedIntentsExcept(
-                        Intent.GUILD_EMOJIS,
-                        Intent.GUILD_BANS,
-                        Intent.GUILD_INVITES,
-                        Intent.DIRECT_MESSAGES,
-                        Intent.GUILD_INTEGRATIONS,
-                        Intent.GUILD_WEBHOOKS,
-                        Intent.DIRECT_MESSAGE_REACTIONS,
-                        Intent.DIRECT_MESSAGE_TYPING,
-                        Intent.GUILD_MESSAGE_TYPING,
-                        Intent.GUILD_VOICE_STATES) // Disable unneeded Intents.
-                .login().join();
-                // If the bot disconnects always reconnect with a 2*sec delay. ( 1st: 2s, 2nd:4s )
-                api.setReconnectDelay(attempt -> attempt * 2);
-                // Only cache 10 messages per channel & remove ones older than 15 min.
-                api.setMessageCacheSize(10, 30*30);
-        // Set the bots status
-        api.updateActivity(ActivityType.valueOf(Constants.STATUSTYPE), Constants.STATUS());
+        ObjectInputFilter.Config config = configManager.getConfigData();
 
-        // Register commands
-        CommandHandler handler = new JavacordHandler(api);
-        handler.registerCommand(new WebsiteCommand());
-        handler.registerCommand(new InviteCommand());
-        handler.registerCommand(new PasteCommand());
-        handler.registerCommand(new HelpCommand());
-        handler.registerCommand(new WebSearch());
-        handler.registerCommand(new CatCommand());
-        handler.registerCommand(new DuckCommand());
-        handler.registerCommand(new DogCommand());
-        handler.registerCommand(new DebugCommand());
+        logger.info(config);
 
-        api.addMessageCreateListener(new DuckyMSG(handler));
+        Client client = Client.builder()
+                .nick(Constants.NICK)
+                .server()
+                .host(Constants.HOST)
+                .then().buildAndConnect();
+
+
+        // Manages listeners.
+        client.getEventManager().registerEventListener(new Cat());
+
+        client.addChannel("#testing");
 
         logger.info("The bots prefix is " + Constants.PREFIX());
-        logger.info("The bots status is " + Constants.STATUS() + " and it's method is " + Constants.STATUSTYPE());
-        logger.info("Logged in as " + api.getYourself() + ".");
-        }
 
+        }
 }
