@@ -1,19 +1,15 @@
 package com.github.koxsosen;
 
-import com.github.koxsosen.commands.Help;
-import com.github.koxsosen.commands.Search;
+import com.github.koxsosen.commands.*;
 import com.github.koxsosen.configuration.HoconConfiguration;
 import com.github.koxsosen.configuration.LoadAndCreate;
-import com.github.koxsosen.listeners.Message;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.swing.text.html.HTMLEditorKit;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public abstract class Main {
     public static JDA jda;
@@ -30,8 +26,33 @@ public abstract class Main {
         jda = JDABuilder.createLight(configuration.getToken(), GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT)
                 .addEventListeners(new Help())
                 .addEventListeners(new Search())
-
+                .addEventListeners(new RandomCat())
+                .addEventListeners(new RandomDog())
+                .addEventListeners(new RandomDuck())
+                .addEventListeners(new Invite())
+                .addEventListeners(new Paste())
+                .addEventListeners(new Website())
                 .build();
+
+        try {
+            jda.awaitReady();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        jda.getGuildById(1142003887004463115L)
+                .updateCommands().addCommands(
+                        Commands.slash("help", "Help command from Ducky."),
+                        Commands.slash("website", "Ducky's website."),
+                        Commands.slash("paste", "Ducky's paste site."),
+                        Commands.slash("cat", "Get a random cat image."),
+                        Commands.slash("dog", "Get a random dog image."),
+                        Commands.slash("duck", "Get a random duck image."),
+                        Commands.slash("g", "Run a search query.")
+                                .addOption(OptionType.STRING, "query", "The parameters to query for."),
+                        Commands.slash("invite", "Get an invite for Ducky.")
+
+                ).queue();
     }
 
 }

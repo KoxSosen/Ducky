@@ -19,6 +19,7 @@ dependencies {
     implementation('ch.qos.logback:logback-classic:1.2.9')
     implementation('org.spongepowered:configurate-hocon:4.1.2')
     implementation('org.jsoup:jsoup:1.16.1')
+    implementation('org.json:json:20230618')
 }
 
 test {

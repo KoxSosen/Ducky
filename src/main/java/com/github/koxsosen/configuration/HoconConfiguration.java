@@ -42,4 +42,11 @@ public class HoconConfiguration {
         return this.searcurl;
     }
 
+    @Comment("Sets the paste url that will be used in the paste command.")
+    private String pasteurl = "https://paste.hahota.net/";
+
+    public @Nullable String getPasteurl() {
+        return this.pasteurl;
+    }
+
 }
